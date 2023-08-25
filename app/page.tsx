@@ -85,9 +85,6 @@ export default async function Index() {
             La web todo {' '}
             <strong>cuñao</strong> amante del futbol quiere tener.
           </p>
-          <div className="bg-foreground py-3 px-6 rounded-lg font-mono text-sm text-background">
-            Get started by editing <strong>app/page.tsx</strong>
-          </div>
         </div>
 
         <div className="w-full p-[1px] bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
