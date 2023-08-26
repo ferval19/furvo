@@ -37,7 +37,6 @@ export default function Login() {
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
           name="nombre"
           placeholder="Fernando"
-          required
         />
          <label className="text-md" htmlFor="apellidos">
           Apellidos
@@ -46,7 +45,6 @@ export default function Login() {
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
           name="apellidos"
           placeholder="Torres"
-          required
         />
         <label className="text-md" htmlFor="email">
           Email
