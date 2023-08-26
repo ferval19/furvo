@@ -81,13 +81,28 @@ export default async function Index() {
             <NextJsLogo />
           </div>
           <h1 className="sr-only">Supabase and Next.js Starter Template</h1>
-          <p className="text-3xl lg:text-4xl !leading-tight mx-auto max-w-xl text-center my-12">
-            La web todo {' '}
-            <strong>cuñao</strong> amante del futbol quiere tener.
-          </p>
+          {user ? (
+                <p className="text-3xl lg:text-4xl !leading-tight mx-auto max-w-xl text-center my-12">
+                Ya eres un {' '}
+                <strong>cuñao</strong> , ahora el futbol se convierte en <strong>furvo</strong>.
+              </p>
+            ) : (
+              <p className="text-3xl lg:text-4xl !leading-tight mx-auto max-w-xl text-center my-12">
+              La web todo {' '}
+              <strong>cuñao</strong> amante del futbol quiere tener.
+            </p>
+            )}
+         
         </div>
 
         <div className="w-full p-[1px] bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
+        <div>
+            {user ? (
+              <div className="flex items-center gap-4">
+                <p>Bienvenido {user.email}, esta es tu área privada.</p>
+              </div>
+            ) : ('')}
+          </div>
 
         <div className="flex flex-col gap-8 text-foreground">
           <h2 className="text-lg font-bold text-center">
