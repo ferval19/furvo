@@ -26,8 +26,8 @@ const fetchLeague: any = async (params: any) => {
 export default async function Page (params:any) {
 
     console.log('Miramos los datos de la liga...')
-    console.log(params)
-    const league = await fetchLeague(params.id);
+    console.log(params.params.id)
+    const league = await fetchLeague(params.params?.id);
     const teams = league.map((item: { team: any; }) => item.team)
     
 
