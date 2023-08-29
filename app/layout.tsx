@@ -6,6 +6,8 @@ export const metadata = {
   description: 'La web que todo cuñado aficionado al futbol quiere tener.',
 }
 
+export const dynamic = "force-dynamic";
+
 export default function RootLayout({
   children,
 }: {
