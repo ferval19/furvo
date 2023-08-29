@@ -40,7 +40,7 @@ export default async function Header() {
     <header>
     <nav className="flex justify-between w-screen">
       <div className="px-5 xl:px-12 py-6 flex w-full items-center">
-        <Link className="text-3xl font-bold font-heading font-black" href="/">
+        <Link className="text-3xl font-bold font-heading" href="/">
           Furvo.
         </Link>
         <ul className="hidden md:flex px-4 mx-auto font-semibold font-heading space-x-12">
