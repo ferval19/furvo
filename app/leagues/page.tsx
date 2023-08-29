@@ -1,11 +1,10 @@
+import CarruselLeaguesPage from "@/components/CarruselLeagues";
+
 export default function LeaguesPage () {
-  
-    //   const league = await fetchLeague();
-    
       return (
         <div>
-          <h1 className="text-white">Estas son las ligas ...</h1>
-    
+          <h1 className="text-3xl">Las ligas mas importantes de europa</h1>
+          <CarruselLeaguesPage ></CarruselLeaguesPage>
         </div>
       );
     }
