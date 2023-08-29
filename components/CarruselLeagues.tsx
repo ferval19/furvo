@@ -24,10 +24,10 @@ export default function CarruselLeaguesPage() {
       <div className="grid gap-6 mb-8 md:grid-cols-2 lg:grid-cols-4">
         {leagues.map(({ id, name, slug, api_id, logo }) => (
           <div
-            className="flex items-center p-4 bg-white border-2 border-gray-200 rounded-lg shadow-sm dark:bg-gray-800"
+            className="flex items-center p-4 bg-white border-2 border-gray-200 rounded-lg shadow-sm "
             key={id}
           >
-            <div className="p-3 mr-4 bg-blue-500 text-white rounded-full">
+            <div className="p-3 mr-4 text-white rounded-full">
               <Image
                 className="w-6 h-12"
                 src={logo}
