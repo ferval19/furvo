@@ -3,6 +3,8 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 import LogoutButton from "../components/LogoutButton";
 
+export const dynamic = "force-dynamic";
+
 const resources = [
   {
     title: "Cookie-based Auth and the Next.js App Router",
