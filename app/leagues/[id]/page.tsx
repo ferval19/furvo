@@ -22,34 +22,12 @@ const fetchLeague: any = async (params: any) => {
 }
 }
 
-async function getData(params: any) {
-    const url = `https://api-football-v1.p.rapidapi.com/v3/standings?season=2022&league=${params}`
-    const options = {
-      method: "GET",
-      headers: {
-        "X-RapidAPI-Key": "YOUR-API-KEY",
-        "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
-      },
-    }
-   
-    const res = await fetch(url, options)
-    // The return value is *not* serialized
-    // You can return Date, Map, Set, etc.
-   
-    // Recommendation: handle errors
-    if (!res.ok) {
-      // This will activate the closest `error.js` Error Boundary
-      throw new Error("Failed to fetch data")
-    }
-   
-    return res.json()
-  }
 
-export default async function Page ({params }) {
+export default async function Page (params:any) {
 
     console.log('Miramos los datos de la liga...')
     console.log(params)
-    const league = await fetchLeague(params?.id);
+    const league = await fetchLeague(params.id);
     const teams = league.map((item: { team: any; }) => item.team)
     
 
