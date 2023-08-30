@@ -2,7 +2,7 @@ import Header from '@/components/Header'
 import './globals.css'
 
 export const metadata = {
-  title: 'Furbo. App',
+  title: 'Furvo. App',
   description: 'La web que todo cuñado aficionado al futbol quiere tener.',
 }
 
