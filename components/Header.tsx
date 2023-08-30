@@ -46,7 +46,7 @@ export default async function Header() {
           Furvo.
         </Link>
         <ul className="hidden md:flex px-4 mx-auto font-semibold font-heading space-x-12">
-          <li><a className="hover:text-gray-200" href="#">Partidos</a></li>
+          <li><Link className="hover:text-gray-200" href="/partidos">Partidos</Link></li>
           <li><Link className="hover:text-gray-200" href="/leagues">Ligas</Link></li>
           <li><a className="hover:text-gray-200" href="#">Noticias</a></li>
         </ul>

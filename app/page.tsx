@@ -6,6 +6,7 @@ import SupabaseLogo from "../components/SupabaseLogo";
 import NextJsLogo from "../components/NextJsLogo";
 import CarruselLeagues from "../components/CarruselLeagues";
 import Credits from "@/components/Credits";
+import FixturesHome from "@/components/FixturesHome";
 
 export const dynamic = "force-dynamic";
 
@@ -51,11 +52,6 @@ export default async function Index() {
     <div className="w-full flex flex-col items-center">
       <div className="flex flex-col max-w-6xl px-3 py-16 lg:py-24">
         <div className="flex flex-col items-center mb-4 lg:mb-12">
-          <div className="flex gap-8 justify-center items-center">
-            <p className="text-5xl font-black">Furvo</p>
-          </div>
-
-          <h1 className="sr-only">Supabase and Next.js Starter Template</h1>
           {user ? (
             <p className="text-3xl lg:text-4xl !leading-tight mx-auto max-w-xl text-center my-12">
               Ya eres un <strong>cuñao</strong> , ahora el futbol se convierte
@@ -79,6 +75,8 @@ export default async function Index() {
             ""
           )}
         </div>
+
+        <FixturesHome />
 
         <CarruselLeagues />
          <Credits />
