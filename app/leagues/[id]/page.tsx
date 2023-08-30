@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode } from "react";
 
 const fetchLeague: any = async (params: any) => {
@@ -60,6 +61,7 @@ export default async function Page (params:any) {
     <p className="text-xs text-neutral-500 ">
       {team.founded}
     </p>
+    <Link href={`${params.params?.id}/${team.id}`}>Ver equipo</Link>
   </div>
 </div>
 
