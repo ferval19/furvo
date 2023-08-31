@@ -60,14 +60,14 @@ export default async function FixturesHome() {
                 />
                 <p className="font-bold md:text-xl">{fixture.teams.home.name}</p>
                  <p className="m-4 font-black">VS</p>
+                <p className="font-bold md:text-xl">{fixture.teams.away.name}</p>
                 <Image
                   src={fixture.teams.away.logo}
                   width={40}
                   height={40}
                   alt={fixture.teams.away.name}
-                  className="mr-2"
+                  className="ml-2"
                 />
-                <p className="font-bold md:text-xl">{fixture.teams.away.name}</p>
               </div>
             </div>
           </div>
