@@ -4,7 +4,7 @@ import Link from "next/link";
 import LogoutButton from "../components/LogoutButton";
 import SupabaseLogo from "../components/SupabaseLogo";
 import NextJsLogo from "../components/NextJsLogo";
-import CarruselLeagues from "../components/CarruselLeagues";
+import ListlLeagues from "../components/ListLeagues";
 import Credits from "@/components/Credits";
 import FixturesHome from "@/components/FixturesHome";
 
@@ -49,8 +49,8 @@ export default async function Index() {
   } = await supabase.auth.getUser();
 
   return (
-    <div className="w-full flex flex-col items-center">
-      <div className="flex flex-col max-w-6xl px-3 py-16 lg:py-24">
+    <div className="container mx-auto">
+      <div className="container mx-auto max-w-screen-xl">
         <div className="flex flex-col items-center mb-4 lg:mb-12">
           {user ? (
             <p className="text-3xl lg:text-4xl !leading-tight mx-auto max-w-xl text-center my-12">
@@ -76,10 +76,12 @@ export default async function Index() {
           )}
         </div>
 
-        <FixturesHome />
+<div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+          <FixturesHome />
+        <ListlLeagues />
+</div>
 
-        <CarruselLeagues />
-         <Credits />
+        <Credits />
       </div>
     </div>
   );

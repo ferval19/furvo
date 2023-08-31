@@ -21,6 +21,7 @@ export default function CarruselLeaguesPage() {
 
   return (
     <section className="container px-6 py-4 mx-auto">
+      <h2 className="text-xl text-bold mb-2">Nuestras ligas</h2>
       <div className="grid gap-6 mb-8 md:grid-cols-2 lg:grid-cols-4">
         {leagues.map(({ id, name, slug, api_id, logo }) => (
           <div

@@ -32,11 +32,11 @@ export default async function FixturesHome() {
   const fixtures = await fetchFixture(39);
   const game = fixtures.map((item: { fixture: any }) => item);
   const teams = game.map((item: { teams: any }) => item.teams);
-
+  console.log(game)
 
   return (
-    <div>
-      <h1 className="text-2xl">Partidos del dia</h1>
+    <div className="col-span-2 px-4">
+      <h1 className="text-2xl font-bold mb-6">Partidos del dia</h1>
       {game.map(
         (fixture: {
           fixture: any;
@@ -45,28 +45,30 @@ export default async function FixturesHome() {
           date: any;
           teams: any;
         }) => (
-          <div className="flex flex-col rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] md:max-w-xl md:flex-row">
-            <div className="flex flex-col justify-start p-6">
+          <div className="flex flex-col rounded-xl bg-white md:flex-row mb-4 w-full">
+            <div className="flex flex-col justify-start p-6 w-full">
               <h5 className="mb-2 text-xl font-medium text-neutral-800">
                 {fixture.fixture.date}
               </h5>
-              <p className="mb-4 text-base text-neutral-600 ">
-                Referee: {fixture.fixture.referee}
-              </p>
-              <Image
-                src={fixture.teams.home.logo}
-                width={40}
-                height={40}
-                alt={fixture.teams.home.name}
-              />
-              {fixture.teams.home.name} VS
-              <Image
-                src={fixture.teams.away.logo}
-                width={40}
-                height={40}
-                alt={fixture.teams.away.name}
-              />
-              {fixture.teams.away.name}
+              <div className="flex flex-row justify-center items-center">
+                <Image
+                  src={fixture.teams.home.logo}
+                  width={40}
+                  height={40}
+                  alt={fixture.teams.home.name}
+                  className="mr-2"
+                />
+                <p className="font-bold md:text-xl">{fixture.teams.home.name}</p>
+                 <p className="m-4 font-black">VS</p>
+                <Image
+                  src={fixture.teams.away.logo}
+                  width={40}
+                  height={40}
+                  alt={fixture.teams.away.name}
+                  className="mr-2"
+                />
+                <p className="font-bold md:text-xl">{fixture.teams.away.name}</p>
+              </div>
             </div>
           </div>
         )
