@@ -39,8 +39,8 @@ export default async function Header() {
   } = await supabase.auth.getUser();
 
   return (
-    <header>
-    <nav className="flex justify-between w-screen bg-gray-900 text-white">
+    <header className="bg-gray-900">
+    <nav className="container mx-auto  flex justify-between w-screen bg-gray-900 text-white">
       <div className="px-5 xl:px-12 py-6 flex w-full items-center">
         <Link className="text-3xl font-bold font-heading" href="/">
           Furvo<span className="text-lime-400 font-bold">.</span>

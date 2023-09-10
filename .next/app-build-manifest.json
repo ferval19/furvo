@@ -11,20 +11,15 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
-    "/partidos/page": [
+    "/leagues/[id]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/partidos/page.js"
+      "static/chunks/app/leagues/[id]/page.js"
     ],
     "/leagues/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/leagues/page.js"
-    ],
-    "/leagues/[id]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/leagues/[id]/page.js"
     ]
   }
 }
