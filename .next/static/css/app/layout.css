@@ -527,6 +527,12 @@ video {
 .col-span-2 {
   grid-column: span 2 / span 2;
 }
+.col-span-5 {
+  grid-column: span 5 / span 5;
+}
+.col-span-3 {
+  grid-column: span 3 / span 3;
+}
 .m-4 {
   margin: 1rem;
 }
@@ -678,6 +684,12 @@ video {
 .w-80 {
   width: 20rem;
 }
+.w-3\/5 {
+  width: 60%;
+}
+.w-2\/5 {
+  width: 40%;
+}
 .min-w-full {
   min-width: 100%;
 }
@@ -719,6 +731,9 @@ video {
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
+.grid-cols-5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
 .flex-row {
   flex-direction: row;
 }
@@ -728,11 +743,17 @@ video {
 .flex-wrap {
   flex-wrap: wrap;
 }
+.items-end {
+  align-items: flex-end;
+}
 .items-center {
   align-items: center;
 }
 .justify-start {
   justify-content: flex-start;
+}
+.justify-end {
+  justify-content: flex-end;
 }
 .justify-center {
   justify-content: center;
@@ -1183,6 +1204,26 @@ video {
     width: 16.666667%;
   }
 
+  .md\:w-full {
+    width: 100%;
+  }
+
+  .md\:w-3\/5 {
+    width: 60%;
+  }
+
+  .md\:w-2\/5 {
+    width: 40%;
+  }
+
+  .md\:w-4\/6 {
+    width: 66.666667%;
+  }
+
+  .md\:w-2\/6 {
+    width: 33.333333%;
+  }
+
   .md\:max-w-xl {
     max-width: 36rem;
   }
@@ -1193,6 +1234,10 @@ video {
 
   .md\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
   .md\:flex-row {
@@ -1216,6 +1261,16 @@ video {
   .md\:text-sm {
     font-size: 0.875rem;
     line-height: 1.25rem;
+  }
+
+  .md\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .md\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
   }
 }
 @media (min-width: 1024px) {

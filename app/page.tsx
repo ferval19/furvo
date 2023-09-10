@@ -50,37 +50,37 @@ export default async function Index() {
 
   return (
     <div className="container mx-auto">
-        <div className="flex flex-col items-center mb-4 lg:mb-12">
-          {user ? (
-            <p className="text-3xl lg:text-4xl !leading-tight mx-auto max-w-xl text-center my-12">
-              Ya eres un <strong>cuñao</strong> , ahora el futbol se convierte
-              en <strong>furvo</strong>.
-            </p>
-          ) : (
-            <p className="text-3xl lg:text-4xl !leading-tight mx-auto max-w-xl text-center my-12">
-              La web que todo <strong>cuñao</strong> amante del futbol quiere
-              tener.
-            </p>
-          )}
-        </div>
+      <div className="flex flex-col items-center mb-4 lg:mb-12">
+        {user ? (
+          <p className="text-3xl lg:text-4xl !leading-tight mx-auto max-w-xl text-center my-12">
+            Ya eres un <strong>cuñao</strong> , ahora el futbol se convierte en{" "}
+            <strong>furvo</strong>.
+          </p>
+        ) : (
+          <p className="text-3xl lg:text-4xl !leading-tight mx-auto max-w-xl text-center my-12">
+            La web que todo <strong>cuñao</strong> amante del futbol quiere
+            tener.
+          </p>
+        )}
+      </div>
 
-        <div className="w-full p-[1px] bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
-        <div>
-          {user ? (
-            <div className="flex items-center gap-4">
-              <p>Bienvenido {user.email}, esta es tu área privada.</p>
-            </div>
-          ) : (
-            ""
-          )}
-        </div>
+      <div className="w-full p-[1px] bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
+      <div>
+        {user ? (
+          <div className="flex items-center gap-4">
+            <p>Bienvenido {user.email}, esta es tu área privada.</p>
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
 
-<div className="grid grid-cols-1 md:grid-cols-3 gap-2">
-          <FixturesHome />
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+        <FixturesHome />
         <ListlLeagues />
-</div>
+      </div>
 
-        <Credits />
+      <Credits />
     </div>
   );
 }
