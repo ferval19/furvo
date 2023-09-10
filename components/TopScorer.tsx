@@ -30,23 +30,27 @@ const fetchTopScores: any = async (params: any) => {
   }
 };
 
-export default async function TopScorer() {
-  console.log("Miramos los datos los partidos...");
-  const scores = await fetchTopScores(39);
+export default async function TopScorer({ leagueId }:any) {
+  console.log("Miramos goleadores...");
+  console.log(leagueId)
+  const scores = await fetchTopScores(leagueId);
   // console.log(scores)
-  const topscores = scores.map((item: { score: any }) => item);
+  const topscores = scores.map((item: { score: any }) => item).slice(0,6);
   console.log(topscores)
 
   return (
     <div className="col-span-2 px-4 mt-10 bg-gray-900 rounded-xl p-6">
       
-      <h1 className="text-2xl font-bold mb-6">Goleadores</h1>
+      <h2 className="text-2xl font-bold mb-6">Goleadores</h2>
       {topscores.map(
         (score: {
           player: any;
           statistics:any;
-        }) => (
-          <div className="flex flex-col rounded-xl bg-gray-800 md:flex-row mb-4 w-full">
+        }, index:any) => (
+          <div
+          key={score.player.id}
+          className={`flex flex-col rounded-xl bg-gray-800 md:flex-row mb-4 w-full ${index === 0 ? "bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%" : "" }`}
+        >
             <div className="flex flex-col justify-start p-6 w-full">
               <div className="flex flex-row justify-center items-center">
                 <Image
