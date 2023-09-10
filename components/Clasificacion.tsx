@@ -3,12 +3,12 @@ import React from "react"
  
 function Clasificacion({ leagueInfos }:any) {
   const data = [
-    "Ranking",
-    "Team",
-    "GP",
-    "W",
-    "D",
-    "L",
+    "Posicion",
+    "Club",
+    "Jugados",
+    "G",
+    "E",
+    "P",
     "GD",
     "PTS",
   ]
@@ -16,7 +16,7 @@ function Clasificacion({ leagueInfos }:any) {
   const filteredData = data.map((title, index) => (
     <th
       key={index}
-      className="border-red-20 w-auto border-b-2 bg-green-200 px-5 py-3 text-left text-xs font-semibold uppercase text-gray-600 "
+      className="border-red-20 w-auto border-b-2 bg-gray-950 px-5 py-3 text-left text-xs font-semibold uppercase text-white "
     >
       {title}
     </th>
@@ -88,7 +88,7 @@ function Clasificacion({ leagueInfos }:any) {
         </div>
         <div className="-mx-4 w-full overflow-x-scroll px-4 py-4 sm:-mx-8 sm:px-8 xl:overflow-x-hidden">
           <div className="inline-block min-w-full rounded-lg shadow ">
-            <table className="min-w-full leading-normal">
+            <table className="min-w-full leading-normal text-black">
               <thead>
                 <tr>{filteredData}</tr>
               </thead>

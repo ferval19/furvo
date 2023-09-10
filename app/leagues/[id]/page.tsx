@@ -1,5 +1,7 @@
 import Clasificacion from "@/components/Clasificacion"
 import Standing from "@/components/Clasificacion"
+import FixturesLeague from "@/components/FixturesLeague"
+import TopScorer from "@/components/TopScorer"
 import React from "react"
  
 async function getData(params:any) {
@@ -10,6 +12,7 @@ async function getData(params:any) {
       "X-RapidAPI-Key": "cfd5812b6amsh90b6b90fa19242dp1b3342jsn56fae60f75b5",
       "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
     },
+    next: { revalidate: 43200 }
   }
  
   const res = await fetch(url, options)
@@ -32,7 +35,10 @@ export default async function Page( params:any ) {
  
   return (
     <section className="flex min-h-screen flex-col items-center justify-between">
+      <FixturesLeague />
+
       <Clasificacion leagueInfos={leagueInfos} />
+      <TopScorer />
     </section>
   )
 }
