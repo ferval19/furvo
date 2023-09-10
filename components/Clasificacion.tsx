@@ -1,8 +1,82 @@
-import Image from "next/image"
-import React from "react"
- 
-function Clasificacion({ leagueInfos }:any) {
-  const data = [
+import Image from "next/image";
+import React from "react";
+
+interface Club {
+  rank: number;
+  team: {
+    logo: string;
+    name: string;
+    id: string; // Reemplaza con el tipo de ID correcto
+  };
+  all: {
+    played: number;
+    win: number;
+    draw: number;
+    lose: number;
+  };
+  goalsDiff: number;
+  points: number;
+}
+
+interface LeagueInfos {
+  logo: string;
+  name: string;
+  flag: string;
+  standings: Club[][];
+}
+
+function TableRow({ club, index }: { club: Club; index: number }) {
+  // Determinar el color de fondo alternante
+  const backgroundColor = index % 2 === 0 ? "bg-gray-900 text-white" : "bg-gray-800 text-white";
+
+  return (
+    <tr className={backgroundColor}>
+      <td className="w-32  px-2 py-2 text-sm">
+        <div className="flex items-center">
+          <div className="flex-shrink-0">
+            <p>{club.rank}</p>
+          </div>
+        </div>
+      </td>
+      <td className="w-36 px-2 py-2 text-sm">
+        <Image
+          width={40}
+          height={40}
+          className="h-10 w-10"
+          src={club.team.logo}
+          alt={`${club.team.name} Logo`}
+        />
+      </td>
+      <td className="w-36 px-2 py-2 text-sm">
+        <a href={`/club/${club.team.id}`}>{club.team.name}</a>
+      </td>
+      <td className="w-10 px-2 py-2 text-sm">
+        {club.all.played}
+      </td>
+      <td className="w-10 px-2 py-2 text-sm">
+        {club.all.win}
+      </td>
+      <td className="w-10 px-2 py-2 text-sm">
+        {club.all.draw}
+      </td>
+      <td className="w-10 px-2 py-2 text-sm">
+        {club.all.lose}
+      </td>
+      <td className="w-10 px-2 py-2 text-sm">
+        {club.goalsDiff}
+      </td>
+      <td className="w-10 px-2 py-2 text-sm font-semibold">{club.points}</td>
+    </tr>
+  );
+}
+
+function Clasificacion({ leagueInfos }: { leagueInfos: LeagueInfos | null }) {
+  if (!leagueInfos) {
+    return <p>Cargando...</p>;
+  }
+
+  const { logo, name, flag, standings } = leagueInfos;
+  const dataHeaders = [
     "Posicion",
     "Club",
     "Jugados",
@@ -11,94 +85,37 @@ function Clasificacion({ leagueInfos }:any) {
     "P",
     "GD",
     "PTS",
-  ]
- 
-  const filteredData = data.map((title, index) => (
+  ];
+
+  const tableHeaders = dataHeaders.map((title, index) => (
     <th
       key={index}
-      className="border-red-20 w-auto border-b-2 bg-gray-950 px-5 py-3 text-left text-xs font-semibold uppercase text-white "
+      className="border-red-20 w-auto border-b-2 bg-gray-950 px-5 py-3 text-left text-xs font-semibold uppercase text-white"
     >
       {title}
     </th>
-  ))
- 
-  const clubs = leagueInfos.standings[0].map((club:any) => (
-    <tr key={club.rank}>
-      <td className="w-32 border-b border-gray-200 bg-white px-2 py-2 text-sm">
-        <div className="flex items-center">
-          <div className="flex-shrink-0 ">
-            <p>{club.rank}</p>
-          </div>
-        </div>
-      </td>
-      <td className="w-36 border-b border-gray-200 bg-white px-2 py-2 text-sm">
-        <Image
-          width={40}
-          height={40}
-          className="h-10  w-10 rounded-full"
-          src={club.team.logo}
-          alt=""
-        />
-      </td>
-      <td className="w-36 border-b border-gray-200 bg-white px-2 py-2 text-sm">
-        <a href="#">{club.team.name}</a>
-      </td>
-      <td className="w-10 border-b border-gray-200 bg-white px-2 py-2 text-sm">
-        {club.all.played}
-      </td>
-      <td className="w-10 border-b border-gray-200 bg-white px-2 py-2 text-sm">
-        {club.all.win}
-      </td>
-      <td className="w-10 border-b border-gray-200 bg-white px-2 py-2 text-sm">
-        {club.all.draw}
-      </td>
-      <td className="w-10 border-b border-gray-200 bg-white px-2 py-2 text-sm">
-        {club.all.lose}
-      </td>
-      <td className="w-10 border-b border-gray-200 bg-white px-2 py-2 text-sm">
-        {club.goalsDiff}
-      </td>
-      <td className="w-10 border-b border-gray-200 bg-white px-2 py-2 text-sm font-semibold">
-        {club.points}
-      </td>
-    </tr>
-  ))
- 
+  ));
+
   return (
     <div className="container mx-auto px-4 sm:px-8">
       <div className="py-8">
-        <div className="flex space-x-4 space-y-6">
-          <Image
-            height={100}
-            width={100}
-            className=" h-24"
-            src={leagueInfos.logo}
-            alt={leagueInfos.name}
-          />
-          <h2 className="text-3xl font-bold leading-tight">
-            {leagueInfos.name}
-          </h2>
-          <Image
-            height={30}
-            width={30}
-            className=" h-7"
-            src={leagueInfos.flag}
-            alt={leagueInfos.name}
-          />
-        </div>
-        <div className="-mx-4 w-full overflow-x-scroll px-4 py-4 sm:-mx-8 sm:px-8 xl:overflow-x-hidden">
-          <div className="inline-block min-w-full rounded-lg shadow ">
+        <div className={`-mx-4 w-full overflow-x-scroll px-4 py-4 sm:-mx-8 sm:px-8 xl:overflow-x-hidden`}>
+          <div className={`inline-block min-w-full rounded-lg shadow`}>
             <table className="min-w-full leading-normal text-black">
               <thead>
-                <tr>{filteredData}</tr>
+                {/* <tr>{tableHeaders}</tr> */}
               </thead>
-              <tbody>{clubs}</tbody>
+              <tbody>
+                {standings[0].map((club, index) => (
+                  <TableRow key={club.rank} club={club} index={index} />
+                ))}
+              </tbody>
             </table>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
- 
-export default Clasificacion
+
+export default Clasificacion;

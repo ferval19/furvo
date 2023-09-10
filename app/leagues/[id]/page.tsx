@@ -2,7 +2,14 @@ import Clasificacion from "@/components/Clasificacion"
 import Standing from "@/components/Clasificacion"
 import FixturesLeague from "@/components/FixturesLeague"
 import TopScorer from "@/components/TopScorer"
+import Image from "next/image";
 import React from "react"
+
+interface LeagueInfos {
+  logo: string;
+  name: string;
+  flag: string;
+}
  
 async function getData(params:any) {
   const url = `https://api-football-v1.p.rapidapi.com/v3/standings?season=2023&league=${params}`
@@ -32,13 +39,36 @@ export default async function Page( params:any ) {
   const data = await getData(params.params?.id)
  
   const leagueInfos = data?.response[0]?.league
+
+  console.log(leagueInfos)
+
+  const { logo, name, flag } = leagueInfos;
  
   return (
-    <section className="flex min-h-screen flex-col items-center justify-between">
-      <FixturesLeague />
-
-      <Clasificacion leagueInfos={leagueInfos} />
-      <TopScorer />
+    <div className="container mx-auto">
+      <section className="flex min-h-screen flex-col items-center justify-between">
+      <div className="flex space-x-4 space-y-6">
+          <Image
+            height={100}
+            width={100}
+            className="h-24"
+            src={logo}
+            alt={name}
+          />
+          <h2 className="text-3xl font-bold leading-tight">{name}</h2>
+          <Image
+            height={30}
+            width={30}
+            className="h-7"
+            src={flag}
+            alt={name}
+          />
+        </div>
+        <FixturesLeague leagueId={leagueInfos.id}/>
+        <Clasificacion leagueInfos={leagueInfos} />
+        <TopScorer leagueId={leagueInfos.id}/>
     </section>
+    </div>
+
   )
 }

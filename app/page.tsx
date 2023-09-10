@@ -50,7 +50,6 @@ export default async function Index() {
 
   return (
     <div className="container mx-auto">
-      <div className="container mx-auto max-w-screen-xl">
         <div className="flex flex-col items-center mb-4 lg:mb-12">
           {user ? (
             <p className="text-3xl lg:text-4xl !leading-tight mx-auto max-w-xl text-center my-12">
@@ -82,7 +81,6 @@ export default async function Index() {
 </div>
 
         <Credits />
-      </div>
     </div>
   );
 }
