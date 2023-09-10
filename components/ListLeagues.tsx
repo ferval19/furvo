@@ -20,12 +20,12 @@ export default function ListLeaguesPage() {
   }, [supabase, setLeagues]);
 
   return (
-    <section className="container px-6 py-4 mx-auto">
+    <section className="col-span-2 px-6 py-4 mx-auto">
       <h2 className="text-2xl font-bold mb-6">Nuestras ligas</h2>
       <div className="flex flex-col">
         {leagues.map(({ id, name, slug, api_id, logo }) => (
               <Link
-                className="flex flex-row items-center text-sm font-normal text-gray-800 mb-4"
+                className="flex flex-row items-center text-sm font-normal text-white mb-4"
                 href={`/leagues/${api_id}`}
                 key={id}
               >

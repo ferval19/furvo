@@ -97,13 +97,14 @@ function Clasificacion({ leagueInfos }: { leagueInfos: LeagueInfos | null }) {
   ));
 
   return (
-    <div className="container mx-auto px-4 sm:px-8">
-      <div className="py-8">
+    <div className="p-4 mt-10 bg-gray-900 rounded-xl w-full md:w-4/6">
+      
+    <h2 className="text-2xl font-bold mb-6">Clasificacion</h2>
         <div className={`-mx-4 w-full overflow-x-scroll px-4 py-4 sm:-mx-8 sm:px-8 xl:overflow-x-hidden`}>
           <div className={`inline-block min-w-full rounded-lg shadow`}>
             <table className="min-w-full leading-normal text-black">
               <thead>
-                {/* <tr>{tableHeaders}</tr> */}
+                <tr>{tableHeaders}</tr>
               </thead>
               <tbody>
                 {standings[0].map((club, index) => (
@@ -112,7 +113,6 @@ function Clasificacion({ leagueInfos }: { leagueInfos: LeagueInfos | null }) {
               </tbody>
             </table>
           </div>
-        </div>
       </div>
     </div>
   );

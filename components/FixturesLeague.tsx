@@ -57,11 +57,11 @@ export default async function FixturesLeague({ leagueId }:any) {
   )
 
   return (
-    <div className="px-4 mt-10 bg-gray-900 rounded-xl p-6">
+    <div className="p-4 mt-10 bg-gray-900 rounded-xl w-full md:w-4/6">
       
       <h2 className="text-2xl font-bold mb-6">Últimos partidos</h2>
-      <div className="overflow-x-auto">
-        <div className="flex space-x-4">
+      <div className="overflow-x-auto w-full">
+        <div className="flex space-x-4 w-full">
       {game.map(
         (fixture: {
           fixture: any;
@@ -73,7 +73,7 @@ export default async function FixturesLeague({ leagueId }:any) {
         }, index: any) => (
           <div
           key={fixture.fixture.id}
-          className={`flex flex-col rounded-xl bg-gray-800 md:flex-row mb-4 w-80 `}
+          className={`flex flex-col rounded-xl bg-gray-800 md:flex-row`}
         >
             <div className="flex flex-col justify-start p-6 w-full">
               <div className="flex flex-col justify-center items-center">

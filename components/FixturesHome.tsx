@@ -61,7 +61,7 @@ export default async function FixturesHome() {
   const gameGermany = fixturesGermany.map((item: { fixture: any }) => item);
 
   if (game.length === 0) return (
-    <div className="col-span-2 px-4">      
+    <div className="col-span-3 px-4">      
       <h1 className="text-2xl font-bold mb-6">No hay partidos buenos para hoy...</h1>
 
 
@@ -69,8 +69,7 @@ export default async function FixturesHome() {
   )
 
   return (
-    <div className="col-span-2 px-4">
-      
+    <div className="col-span-3 px-4">
       <h1 className="text-2xl font-bold mb-6">Partidos del hoy</h1>
       {game.map(
         (fixture: {

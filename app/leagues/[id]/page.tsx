@@ -47,8 +47,8 @@ export default async function Page( params:any ) {
  
   return (
     <div className="container mx-auto">
-      <section className="flex min-h-screen flex-col items-center justify-between">
-      <div className="flex space-x-4 space-y-6">
+      <section className="flex min-h-screen flex-col justify-between">
+      <div className="flex space-x-4 space-y-6 mt-8">
           <Image
             height={100}
             width={100}
