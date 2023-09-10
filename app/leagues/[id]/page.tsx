@@ -1,6 +1,7 @@
 import Clasificacion from "@/components/Clasificacion"
 import Standing from "@/components/Clasificacion"
 import FixturesLeague from "@/components/FixturesLeague"
+import NextGame from "@/components/NextGame";
 import TopScorer from "@/components/TopScorer"
 import Image from "next/image";
 import React from "react"
@@ -64,6 +65,7 @@ export default async function Page( params:any ) {
             alt={name}
           />
         </div>
+        <NextGame leagueId={leagueInfos.id} />
         <FixturesLeague leagueId={leagueInfos.id}/>
         <Clasificacion leagueInfos={leagueInfos} />
         <TopScorer leagueId={leagueInfos.id}/>
