@@ -8,6 +8,8 @@ import {
   ReactPortal,
   PromiseLikeOfReactNode,
 } from "react";
+import IconStadium from "./IconStadium";
+import IconClock from "./IconClock";
 
 const fetchFixture: any = async (params: any) => {
   // Obtén la fecha actual
@@ -73,23 +75,32 @@ export default async function NextGame({ leagueId }: any) {
         ) => (
           <div
             key={fixture.fixture.id}
-            className={`flex flex-col rounded-xl bg-gradient-to-r from-indigo-800 to-indigo-600 md:flex-row mb-4 mt-8 w-full md:w-4/6`}
+            className={`flex flex-col rounded-xl bg-gradient-to-r from-indigo-800 to-indigo-600 md:flex-row mt-8 w-full md:w-4/6`}
           >
             <div className="flex flex-wrap justify-between p-6 w-full">
               <div className="flex flex-col">
-                <div className="flex flex-col">
-                  <p className="text-xs">{fixture.fixture.date.slice(0, 10)}, {fixture.fixture.date.slice(11, 16)}</p>
-                  <p className="font-bold">{fixture.fixture.venue.name}</p>
-                </div>
-                <div className="flex flex-row items-center">
+              <div className="flex flex-row items-center">
                   <p className="font-bold md:text-3xl">
                     {fixture.teams.home.name}
                   </p>
-                  <span className="mx-1">VS</span>
+                  <span className="mx-1 text-lime-400">VS</span>
                   <p className="font-bold md:text-3xl">
                     {fixture.teams.away.name}
                   </p>
                 </div>
+                <div className="flex flex-col">
+                <div className="flex flex-wrap">
+                    <IconClock />
+                    <p className="ml-2 text-xs">{fixture.fixture.date.slice(0, 10)}, {fixture.fixture.date.slice(11, 16)}</p>
+                  </div>
+                  
+                  <div className="flex flex-wrap">
+                    <IconStadium />
+                    <p className="ml-2 font-bold">{fixture.fixture.venue.name}</p>
+                  </div>
+                  
+                </div>
+                
               </div>
 
               <div className="flex flex-wrap justify-end items-end">

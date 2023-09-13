@@ -8,6 +8,7 @@ import {
   ReactPortal,
   PromiseLikeOfReactNode,
 } from "react";
+import NextGame from "./NextGame";
 
 const fetchFixture: any = async (params: any) => {
   // Obtén la fecha actual
@@ -62,7 +63,11 @@ export default async function FixturesHome() {
 
   if (game.length === 0) return (
     <div className="col-span-3 px-4">      
-      <h1 className="text-2xl font-bold mb-6">No hay partidos buenos para hoy...</h1>
+      <NextGame leagueId={39}/>
+      <NextGame leagueId={140}/>
+      <NextGame leagueId={135}/>
+      <NextGame leagueId={61}/>
+      <NextGame leagueId={78}/>
 
 
     </div>

@@ -75,12 +75,10 @@ export default async function Index() {
         )}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-12">
         <FixturesHome />
         <ListlLeagues />
       </div>
-
-      <Credits />
     </div>
   );
 }

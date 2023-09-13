@@ -39,16 +39,17 @@ function TableRow({ club, index }: { club: Club; index: number }) {
         </div>
       </td>
       <td className="w-36 px-2 py-2 text-sm">
-        <Image
+        <div className="flex flex-wrap items-center">
+                  <Image
           width={40}
           height={40}
-          className="h-10 w-10"
+          className="h-10 w-10 mr-2"
           src={club.team.logo}
           alt={`${club.team.name} Logo`}
         />
-      </td>
-      <td className="w-36 px-2 py-2 text-sm">
         <a href={`/club/${club.team.id}`}>{club.team.name}</a>
+        </div>
+
       </td>
       <td className="w-10 px-2 py-2 text-sm">
         {club.all.played}
@@ -77,7 +78,7 @@ function Clasificacion({ leagueInfos }: { leagueInfos: LeagueInfos | null }) {
 
   const { logo, name, flag, standings } = leagueInfos;
   const dataHeaders = [
-    "Posicion",
+    "#",
     "Club",
     "Jugados",
     "G",
