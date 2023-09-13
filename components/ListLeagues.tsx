@@ -25,7 +25,7 @@ export default function ListLeaguesPage() {
       <div className="flex flex-col">
         {leagues.map(({ id, name, slug, api_id, logo }) => (
               <Link
-                className="flex flex-row items-center text-sm font-normal text-white mb-4"
+                className="flex flex-row items-center text-xl font-normal text-white mb-4"
                 href={`/leagues/${api_id}`}
                 key={id}
               >
