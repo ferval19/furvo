@@ -1,6 +1,7 @@
 import Clasificacion from "@/components/Clasificacion";
 import Standing from "@/components/Clasificacion";
 import FixturesLeague from "@/components/FixturesLeague";
+import FixturesLive from "@/components/FixturesLive";
 import NextGame from "@/components/NextGame";
 import TopScorer from "@/components/TopScorer";
 import Image from "next/image";
@@ -70,6 +71,7 @@ export default async function Page(params: any) {
         <div className="lg:col-span-4">
           <NextGame leagueId={leagueInfos.id} />
           <FixturesLeague leagueId={leagueInfos.id} />
+          <FixturesLive leagueId={leagueInfos.id} />
           <Clasificacion leagueInfos={leagueInfos} />
         </div>
         <aside>
