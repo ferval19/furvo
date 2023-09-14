@@ -8,6 +8,7 @@ import {
   ReactPortal,
   PromiseLikeOfReactNode,
 } from "react";
+import FixturesLastGames from "./FixturesLastGames";
 
 const fetchFixture: any = async (params: any) => {
   // Obtén la fecha actual
@@ -23,7 +24,7 @@ const fetchFixture: any = async (params: any) => {
   const fechaEnFormatoAñoMesDia = `${año}-${mes}-${dia}`;
   console.log(fechaEnFormatoAñoMesDia);
   console.log("paramns ->" + params);
-  const url = `https://api-football-v1.p.rapidapi.com/v3/fixtures?last=5&league=${params}&season=2023`;
+  const url = `https://api-football-v1.p.rapidapi.com/v3/fixtures?date=${fechaEnFormatoAñoMesDia}&league=${params}&season=2023`;
   const options = {
     method: "GET",
     headers: {
@@ -44,22 +45,18 @@ const fetchFixture: any = async (params: any) => {
 export default async function FixturesLeague({ leagueId }: any) {
   console.log("Miramos los datos los partidos...");
   const fixtures = await fetchFixture(leagueId);
-  const game = fixtures.map((item: { fixture: any }) => item).slice(0, 3);
+  const game = fixtures.map((item: { fixture: any }) => item).slice(0, 5);
   const teams = game.map((item: { teams: any }) => item.teams);
   console.log(game.length);
 
   if (game.length === 0)
     return (
-      <div className="col-span-2 px-4">
-        <h1 className="text-2xl font-bold mb-6">
-          No hay partidos buenos para hoy...
-        </h1>
-      </div>
+      <FixturesLastGames leagueId={leagueId} />
     );
 
   return (
     <div className="p-4 mt-4 bg-gray-900 rounded-xl w-full lg:w-4/6">
-      <h2 className="text-2xl font-bold mb-6">Últimos partidos</h2>
+      <h2 className="text-2xl font-bold mb-6">Partidos de hoy</h2>
       <div className="overflow-x-auto w-full">
         <div className="flex space-x-4">
           {game.map(
