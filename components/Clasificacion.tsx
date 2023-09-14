@@ -98,7 +98,7 @@ function Clasificacion({ leagueInfos }: { leagueInfos: LeagueInfos | null }) {
   ));
 
   return (
-    <div className="p-4 mt-10 bg-gray-900 rounded-xl w-full md:w-4/6">
+    <div className="p-4 mt-10 bg-gray-900 rounded-xl w-full">
       
     <h2 className="text-2xl font-bold mb-6">Clasificacion</h2>
         <div className={`-mx-4 w-full overflow-x-scroll px-4 py-4 sm:-mx-8 sm:px-8 xl:overflow-x-hidden`}>

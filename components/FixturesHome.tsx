@@ -10,20 +10,32 @@ import {
 } from "react";
 import NextGame from "./NextGame";
 
-const fetchFixture: any = async (params: any) => {
-  // Obtén la fecha actual
-  const fechaActual = new Date();
+interface Fixture {
+  fixture: {
+    id: number;
+    referee: string;
+    date: string;
+  };
+  teams: {
+    home: {
+      name: string;
+      logo: string;
+    };
+    away: {
+      name: string;
+      logo: string;
+    };
+  };
+}
 
-  // Obtiene el año, mes y día
+const fetchFixture: any = async (params: any) => {
+
+  const fechaActual = new Date();
   const año = fechaActual.getFullYear();
-  // El mes se indexa desde 0, así que sumamos 1 para obtener el mes actual.
   const mes = String(fechaActual.getMonth() + 1).padStart(2, "0");
   const dia = String(fechaActual.getDate()).padStart(2, "0");
-
-  // Crea la cadena en formato "año-mes-día"
   const fechaEnFormatoAñoMesDia = `${año}-${mes}-${dia}`;
-  console.log(fechaEnFormatoAñoMesDia);
-  console.log("paramns ->" + params);
+
   const url = `https://api-football-v1.p.rapidapi.com/v3/fixtures?date=${fechaEnFormatoAñoMesDia}&league=${params}&season=2023`;
   const options = {
     method: "GET",
@@ -62,15 +74,11 @@ export default async function FixturesHome() {
   const gameGermany = fixturesGermany.map((item: { fixture: any }) => item);
 
   if (game.length === 0) return (
-    <div className="col-span-3 px-4">      
-      <NextGame leagueId={39}/>
-      <NextGame leagueId={140}/>
-      <NextGame leagueId={135}/>
-      <NextGame leagueId={61}/>
-      <NextGame leagueId={78}/>
-
-
-    </div>
+<div className="col-span-3 px-4">
+        {[39, 140, 135, 61, 78].map((leagueId) => (
+          <NextGame key={leagueId} leagueId={leagueId} />
+        ))}
+      </div>
   )
 
   return (

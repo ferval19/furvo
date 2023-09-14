@@ -39,7 +39,7 @@ export default async function TopScorer({ leagueId }:any) {
   console.log(topscores)
 
   return (
-    <div className="mt-10 bg-gray-900 rounded-xl p-4 w-full md:w-2/6">
+    <div className="mt-8 bg-gray-900 rounded-xl p-4 w-full">
       
       <h2 className="text-2xl font-bold mb-6">Goleadores</h2>
       {topscores.map(
