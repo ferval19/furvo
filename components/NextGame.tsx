@@ -75,7 +75,7 @@ export default async function NextGame({ leagueId }: any) {
         ) => (
           <div
             key={fixture.fixture.id}
-            className={`flex flex-col rounded-xl bg-gradient-to-r from-indigo-800 to-indigo-600 md:flex-row mt-8 w-full`}
+            className={`flex flex-col rounded-xl bg-gradient-to-r from-indigo-800 to-indigo-600 md:flex-row mt-4 w-full`}
           >
             <div className="flex flex-wrap justify-between p-6 w-full">
               <div className="flex flex-col">
