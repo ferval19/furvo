@@ -47,22 +47,34 @@ export default async function Page(params: any) {
 
   return (
     <div className="container mx-auto">
-      <section className="flex min-h-screen flex-col justify-between">
-        <div className="flex space-x-4 space-y-6 mt-8">
-          <Image
-            height={100}
-            width={100}
-            className="h-24"
-            src={logo}
-            alt={name}
-          />
-          <h2 className="text-3xl font-bold leading-tight">{name}</h2>
-          <Image height={30} width={30} className="h-7" src={flag} alt={name} />
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="lg:col-span-5">
+          <div className="flex space-x-4 space-y-6 mt-8">
+            <Image
+              height={100}
+              width={100}
+              className="h-24"
+              src={logo}
+              alt={name}
+            />
+            <h2 className="text-3xl font-bold leading-tight">{name}</h2>
+            <Image
+              height={30}
+              width={30}
+              className="h-7"
+              src={flag}
+              alt={name}
+            />
+          </div>
         </div>
-        <NextGame leagueId={leagueInfos.id} />
-        <FixturesLeague leagueId={leagueInfos.id} />
-        <Clasificacion leagueInfos={leagueInfos} />
-        <TopScorer leagueId={leagueInfos.id} />
+        <div className="lg:col-span-4">
+          <NextGame leagueId={leagueInfos.id} />
+          <FixturesLeague leagueId={leagueInfos.id} />
+          <Clasificacion leagueInfos={leagueInfos} />
+        </div>
+        <aside>
+          <TopScorer leagueId={leagueInfos.id} />
+        </aside>
       </section>
     </div>
   );
