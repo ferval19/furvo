@@ -58,7 +58,7 @@ export default async function FixturesLeague({ leagueId }: any) {
     );
 
   return (
-    <div className="p-4 mt-10 bg-gray-900 rounded-xl w-full lg:w-4/6">
+    <div className="p-4 mt-4 bg-gray-900 rounded-xl w-full lg:w-4/6">
       <h2 className="text-2xl font-bold mb-6">Últimos partidos</h2>
       <div className="overflow-x-auto w-full">
         <div className="flex space-x-4">
