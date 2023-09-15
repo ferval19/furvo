@@ -9,7 +9,12 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      filter: {
+        'blur': 'blur(4px)',
+        'brightness': 'brightness(1.9)',
+      },
+    },
   },
   plugins: [],
 }
