@@ -1,13 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import {
-  Key,
-  ReactElement,
-  JSXElementConstructor,
-  ReactNode,
-  ReactPortal,
-  PromiseLikeOfReactNode,
-} from "react";
+import { useEffect, useState } from "react";
 import NextGame from "./NextGame";
 
 interface Fixture {
@@ -29,7 +22,6 @@ interface Fixture {
 }
 
 const fetchFixture: any = async (params: any) => {
-
   const fechaActual = new Date();
   const año = fechaActual.getFullYear();
   const mes = String(fechaActual.getMonth() + 1).padStart(2, "0");
@@ -43,7 +35,7 @@ const fetchFixture: any = async (params: any) => {
       "X-RapidAPI-Key": "cfd5812b6amsh90b6b90fa19242dp1b3342jsn56fae60f75b5",
       "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
     },
-    next: { revalidate: 43200 }
+    next: { revalidate: 43200 },
   };
   try {
     const response = await fetch(url, options);
@@ -55,250 +47,94 @@ const fetchFixture: any = async (params: any) => {
 };
 
 export default async function FixturesHome() {
-  console.log("Miramos los datos los partidos...");
-  const fixtures = await fetchFixture(39);
-  const game = fixtures.map((item: { fixture: any }) => item);
-  const teams = game.map((item: { teams: any }) => item.teams);
-  console.log(game.length);
+  // Obtén los partidos para todas las ligas en paralelo
+  const [fixtures39, fixtures140, fixtures135, fixtures61, fixtures78] =
+    await Promise.all([
+      fetchFixture(39),
+      fetchFixture(140),
+      fetchFixture(135),
+      fetchFixture(61),
+      fetchFixture(78),
+    ]);
 
-  const fixturesSpain = await fetchFixture(140);
-  const gameSpain = fixturesSpain.map((item: { fixture: any }) => item);
+  // Organiza los datos en un array de objetos
+  const games = [
+    { leagueName: "Inglaterra - Premier League", fixtures: fixtures39 },
+    { leagueName: "España - La Liga", fixtures: fixtures140 },
+    { leagueName: "Italia - Serie A", fixtures: fixtures135 },
+    { leagueName: "Francia - Liegue 1", fixtures: fixtures61 },
+    { leagueName: "Alemania - Bundesliga", fixtures: fixtures78 },
+  ];
 
-  const fixturesItaly = await fetchFixture(135);
-  const gameItaly = fixturesItaly.map((item: { fixture: any }) => item);
-
-  const fixturesFrance = await fetchFixture(61);
-  const gameFrance = fixturesFrance.map((item: { fixture: any }) => item);
-
-  const fixturesGermany = await fetchFixture(78);
-  const gameGermany = fixturesGermany.map((item: { fixture: any }) => item);
-
-  if (game.length === 0) return (
-<div className="col-span-3 px-4">
-        {[39, 140, 135, 61, 78].map((leagueId) => (
-          <NextGame key={leagueId} leagueId={leagueId} />
-        ))}
-      </div>
-  )
+  // Verifica si todos los juegos están vacíos
+  const allGamesEmpty = games.every(({ fixtures }) => fixtures.length === 0);
 
   return (
-    <div className="col-span-3 px-4">
-      <h1 className="text-2xl font-bold mb-6">Partidos del hoy</h1>
-      {game.map(
-        (fixture: {
-          fixture: any;
-          id: number;
-          referee: string;
-          date: any;
-          teams: any;
-        }) => (
-          <div className="flex flex-col rounded-xl bg-white md:flex-row mb-4 w-full">
-            <div className="flex flex-col justify-start p-6 w-full">
-              <div className="flex flex-col justify-center items-center">
-                <p className="text-xs">{fixture.fixture.date.slice(0, 10)}</p>
-                <p className="text-xs font-bold">
-                  {fixture.fixture.date.slice(11, 16)}
-                </p>
+    <div className="col-span-4 p-4 mt-4 bg-gray-900 rounded-xl w-full">
+      <h1 className="text-2xl font-bold mb-6">Hoy tenemos...</h1>
+
+      {/* Mapea los juegos de todas las ligas */}
+      {games.map(({ leagueName, fixtures }) => (
+        <div key={leagueName}>
+          <h2 className="text-normal my-4">{leagueName}</h2>
+          {fixtures.map(
+            (
+              fixture: {
+                fixture: any;
+                id: number;
+                referee: string;
+                date: any;
+                teams: any;
+              },
+              index: any
+            ) => (
+              <div
+                key={fixture.fixture.id}
+                className="flex flex-col rounded-xl bg-gray-800 px-8 md:flex-row mb-4 w-full"
+              >
+                <div className="flex flex-col justify-start p-6 w-full">
+                  <div className="flex flex-col justify-center items-center">
+                    <p className="text-xs font-bold">
+                      {fixture.fixture.date.slice(11, 16)}
+                    </p>
+                  </div>
+                  <div className="flex flex-row justify-center items-center">
+                    <Image
+                      src={fixture.teams.home.logo}
+                      width={40}
+                      height={40}
+                      alt={fixture.teams.home.name}
+                      className="mr-2"
+                    />
+                    <p className="font-bold md:text-xl">
+                      {fixture.teams.home.name}
+                    </p>
+                    <p className="m-4 font-black">VS</p>
+                    <p className="font-bold md:text-xl">
+                      {fixture.teams.away.name}
+                    </p>
+                    <Image
+                      src={fixture.teams.away.logo}
+                      width={40}
+                      height={40}
+                      alt={fixture.teams.away.name}
+                      className="ml-2"
+                    />
+                  </div>
+                </div>
               </div>
-              <div className="flex flex-row justify-center items-center">
-                <Image
-                  src={fixture.teams.home.logo}
-                  width={40}
-                  height={40}
-                  alt={fixture.teams.home.name}
-                  className="mr-2"
-                />
-                <p className="font-bold md:text-xl">
-                  {fixture.teams.home.name}
-                </p>
-                <p className="m-4 font-black">VS</p>
-                <p className="font-bold md:text-xl">
-                  {fixture.teams.away.name}
-                </p>
-                <Image
-                  src={fixture.teams.away.logo}
-                  width={40}
-                  height={40}
-                  alt={fixture.teams.away.name}
-                  className="ml-2"
-                />
-              </div>
-            </div>
-          </div>
-        )
+            )
+          )}
+        </div>
+      ))}
+      {/* Si todos los juegos están vacíos, muestra los componentes NextGame para todas las ligas */}
+      {allGamesEmpty && (
+        <div className="col-span-3 px-4">
+          {[39, 140, 135, 61, 78].map((leagueId) => (
+            <NextGame key={leagueId} leagueId={leagueId} />
+          ))}
+        </div>
       )}
-      {/* {gameSpain.map(
-        (fixture: {
-          fixture: any;
-          id: number;
-          referee: string;
-          date: any;
-          teams: any;
-        }) => (
-          <div className="flex flex-col rounded-xl bg-white md:flex-row mb-4 w-full">
-            <div className="flex flex-col justify-start p-6 w-full">
-              <div className="flex flex-col justify-center items-center">
-                <p className="text-xs">{fixture.fixture.date.slice(0, 10)}</p>
-                <p className="text-xs font-bold">
-                  {fixture.fixture.date.slice(11, 16)}
-                </p>
-              </div>
-              <div className="flex flex-row justify-center items-center">
-                <Image
-                  src={fixture.teams.home.logo}
-                  width={40}
-                  height={40}
-                  alt={fixture.teams.home.name}
-                  className="mr-2"
-                />
-                <p className="font-bold md:text-xl">
-                  {fixture.teams.home.name}
-                </p>
-                <p className="m-4 font-black">VS</p>
-                <p className="font-bold md:text-xl">
-                  {fixture.teams.away.name}
-                </p>
-                <Image
-                  src={fixture.teams.away.logo}
-                  width={40}
-                  height={40}
-                  alt={fixture.teams.away.name}
-                  className="ml-2"
-                />
-              </div>
-            </div>
-          </div>
-        )
-      )}
-      {gameItaly.map(
-        (fixture: {
-          fixture: any;
-          id: number;
-          referee: string;
-          date: any;
-          teams: any;
-        }) => (
-          <div className="flex flex-col rounded-xl bg-white md:flex-row mb-4 w-full">
-            <div className="flex flex-col justify-start p-6 w-full">
-              <div className="flex flex-col justify-center items-center">
-                <p className="text-xs">{fixture.fixture.date.slice(0, 10)}</p>
-                <p className="text-xs font-bold">
-                  {fixture.fixture.date.slice(11, 16)}
-                </p>
-              </div>
-              <div className="flex flex-row justify-center items-center">
-                <Image
-                  src={fixture.teams.home.logo}
-                  width={40}
-                  height={40}
-                  alt={fixture.teams.home.name}
-                  className="mr-2"
-                />
-                <p className="font-bold md:text-xl">
-                  {fixture.teams.home.name}
-                </p>
-                <p className="m-4 font-black">VS</p>
-                <p className="font-bold md:text-xl">
-                  {fixture.teams.away.name}
-                </p>
-                <Image
-                  src={fixture.teams.away.logo}
-                  width={40}
-                  height={40}
-                  alt={fixture.teams.away.name}
-                  className="ml-2"
-                />
-              </div>
-            </div>
-          </div>
-        )
-      )}
-      {gameFrance.map(
-        (fixture: {
-          fixture: any;
-          id: number;
-          referee: string;
-          date: any;
-          teams: any;
-        }) => (
-          <div className="flex flex-col rounded-xl bg-white md:flex-row mb-4 w-full">
-            <div className="flex flex-col justify-start p-6 w-full">
-              <div className="flex flex-col justify-center items-center">
-                <p className="text-xs">{fixture.fixture.date.slice(0, 10)}</p>
-                <p className="text-xs font-bold">
-                  {fixture.fixture.date.slice(11, 16)}
-                </p>
-              </div>
-              <div className="flex flex-row justify-center items-center">
-                <Image
-                  src={fixture.teams.home.logo}
-                  width={40}
-                  height={40}
-                  alt={fixture.teams.home.name}
-                  className="mr-2"
-                />
-                <p className="font-bold md:text-xl">
-                  {fixture.teams.home.name}
-                </p>
-                <p className="m-4 font-black">VS</p>
-                <p className="font-bold md:text-xl">
-                  {fixture.teams.away.name}
-                </p>
-                <Image
-                  src={fixture.teams.away.logo}
-                  width={40}
-                  height={40}
-                  alt={fixture.teams.away.name}
-                  className="ml-2"
-                />
-              </div>
-            </div>
-          </div>
-        )
-      )}
-      {gameGermany.map(
-        (fixture: {
-          fixture: any;
-          id: number;
-          referee: string;
-          date: any;
-          teams: any;
-        }) => (
-          <div className="flex flex-col rounded-xl bg-white md:flex-row mb-4 w-full">
-            <div className="flex flex-col justify-start p-6 w-full">
-              <div className="flex flex-col justify-center items-center">
-                <p className="text-xs">{fixture.fixture.date.slice(0, 10)}</p>
-                <p className="text-xs font-bold">
-                  {fixture.fixture.date.slice(11, 16)}
-                </p>
-              </div>
-              <div className="flex flex-row justify-center items-center">
-                <Image
-                  src={fixture.teams.home.logo}
-                  width={40}
-                  height={40}
-                  alt={fixture.teams.home.name}
-                  className="mr-2"
-                />
-                <p className="font-bold md:text-xl">
-                  {fixture.teams.home.name}
-                </p>
-                <p className="m-4 font-black">VS</p>
-                <p className="font-bold md:text-xl">
-                  {fixture.teams.away.name}
-                </p>
-                <Image
-                  src={fixture.teams.away.logo}
-                  width={40}
-                  height={40}
-                  alt={fixture.teams.away.name}
-                  className="ml-2"
-                />
-              </div>
-            </div>
-          </div>
-        )
-      )} */}
     </div>
   );
 }
