@@ -31,7 +31,7 @@ export default function CarruselLeaguesPage() {
             <div className="p-3 mr-4 text-white rounded-full">
               <Image
                 className=""
-                src={logo}
+                src={`/${slug}.jpg`}
                 width={100}
                 height={100}
                 alt={name}

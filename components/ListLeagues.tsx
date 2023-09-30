@@ -4,6 +4,7 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { log } from "console";
 
 export default function ListLeaguesPage() {
   const [leagues, setLeagues] = useState<any[]>([]);
@@ -12,6 +13,7 @@ export default function ListLeaguesPage() {
   useEffect(() => {
     const getLeagues = async () => {
       let { data: leagues, error } = await supabase.from("leagues").select("*");
+      console.log(leagues);
       if (leagues) {
         setLeagues(leagues);
       }
@@ -30,7 +32,7 @@ export default function ListLeaguesPage() {
                 key={id}
               >
                 <Image
-                src={logo}
+                src={`/${slug}.jpg`}
                 width={40}
                 height={40}
                 alt={name}

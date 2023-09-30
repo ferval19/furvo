@@ -7,6 +7,7 @@ import NextJsLogo from "../components/NextJsLogo";
 import ListlLeagues from "../components/ListLeagues";
 import Credits from "@/components/Credits";
 import FixturesHome from "@/components/FixturesHome";
+import FixturesLive from "@/components/FixturesLive";
 
 export const dynamic = "force-dynamic";
 
@@ -76,7 +77,11 @@ export default async function Index() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-6 gap-2 mb-12">
+        <div className="md:col-span-4">
+                  <FixturesLive leagueId={39}/>
         <FixturesHome />
+        </div>
+
         <ListlLeagues />
       </div>
     </div>

@@ -23,7 +23,7 @@ const fetchFixture: any = async (params: any) => {
   const fechaEnFormatoAñoMesDia = `${año}-${mes}-${dia}`;
   console.log(fechaEnFormatoAñoMesDia);
   console.log("paramns ->" + params);
-  const url = `https://api-football-v1.p.rapidapi.com/v3/fixtures?live=all&league=${params}`;  
+  const url = `https://api-football-v1.p.rapidapi.com/v3/fixtures?live=all&league=${params}`;
   // const url = `https://api-football-v1.p.rapidapi.com/v3/fixtures?live=all&league=308`;
 
   const options = {
@@ -32,7 +32,7 @@ const fetchFixture: any = async (params: any) => {
       "X-RapidAPI-Key": "cfd5812b6amsh90b6b90fa19242dp1b3342jsn56fae60f75b5",
       "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
     },
-    next: { revalidate: 43200 },
+    next: { revalidate: 300 },
   };
   try {
     const response = await fetch(url, options);
@@ -50,13 +50,17 @@ export default async function FixturesLive({ leagueId }: any) {
   const teams = game.map((item: { teams: any }) => item.teams);
   console.log(game.length);
 
-  if(game.length === 0){
-    return (<></>);
+  if (game.length === 0) {
+    return <></>;
   }
 
   return (
-    <div className="p-4 mt-4 bg-gray-900 rounded-xl w-full lg:w-4/6">
-      <h2 className="text-2xl font-bold mb-6">Directo</h2>
+    <div className="p-4 mt-4 bg-gray-900 rounded-xl w-full col-span-1">
+      <h2 className="text-2xl mb-6 ">
+        <span className="text-red-600 border-2 border-rose-500 p-2 rounded-lg bg-rose-300">
+          Directo
+        </span>
+      </h2>
       <div className="overflow-x-auto w-full">
         <div className="flex space-x-4">
           {game.map(
@@ -78,11 +82,8 @@ export default async function FixturesLive({ leagueId }: any) {
               >
                 <div className="flex flex-col justify-start p-6 w-full">
                   <div className="flex flex-col justify-center items-center">
-                    <p className="text-xs">
-                      {fixture.fixture.date.slice(0, 10)}
-                    </p>
-                    <p className="text-xs font-bold">
-                      {fixture.fixture.date.slice(11, 16)}
+                    <p className="text-xs font-bold text-green-600">
+                      {fixture.fixture.status.elapsed} "
                     </p>
                   </div>
                   <div className="flex flex-row justify-center items-center">
@@ -99,10 +100,7 @@ export default async function FixturesLive({ leagueId }: any) {
                     <div className="bg-gray-900 flex p-2 m-1 rounded-xl">
                       <p className="text.bold">{fixture.goals.home}</p>
                       <span className="mx-1">:</span>
-                      <p className="text.bold">
-                        {" "}
-                        {fixture.goals.away}
-                      </p>
+                      <p className="text.bold"> {fixture.goals.away}</p>
                     </div>
                     <p className="font-bold md:text-sm">
                       {fixture.teams.away.name}
