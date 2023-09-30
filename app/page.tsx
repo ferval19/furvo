@@ -78,7 +78,7 @@ export default async function Index() {
 
       <div className="grid grid-cols-1 md:grid-cols-6 gap-2 mb-12">
         <div className="md:col-span-4">
-                  <FixturesLive leagueId={39}/>
+        {/* <FixturesLive leagueId={39}/> */}
         <FixturesHome />
         </div>
 
