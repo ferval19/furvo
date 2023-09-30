@@ -69,9 +69,9 @@ export default async function Page(params: any) {
           </div>
         </div>
         <div className="lg:col-span-4">
+          <FixturesLive leagueId={leagueInfos.id} />
           <NextGame leagueId={leagueInfos.id} />
           <FixturesLeague leagueId={leagueInfos.id} />
-          <FixturesLive leagueId={leagueInfos.id} />
           <Clasificacion leagueInfos={leagueInfos} />
         </div>
         <aside className="lg:col-span-2">
