@@ -59,11 +59,11 @@ export default async function FixturesHome() {
 
   // Organiza los datos en un array de objetos
   const games = [
-    { leagueName: "Inglaterra - Premier League", fixtures: fixtures39 },
-    { leagueName: "España - La Liga", fixtures: fixtures140 },
-    { leagueName: "Italia - Serie A", fixtures: fixtures135 },
-    { leagueName: "Francia - Liegue 1", fixtures: fixtures61 },
-    { leagueName: "Alemania - Bundesliga", fixtures: fixtures78 },
+    { leagueName: "Inglaterra 🏴󠁧󠁢󠁥󠁮󠁧󠁿 - Premier League", fixtures: fixtures39 },
+    { leagueName: "España 🇪🇦 - La Liga", fixtures: fixtures140 },
+    { leagueName: "Italia 🇮🇹 - Serie A", fixtures: fixtures135 },
+    { leagueName: "Francia 🇫🇷 - Liegue 1", fixtures: fixtures61 },
+    { leagueName: "Alemania 🇩🇪 - Bundesliga", fixtures: fixtures78 },
   ];
 
   // Verifica si todos los juegos están vacíos
@@ -92,34 +92,33 @@ export default async function FixturesHome() {
                 key={fixture.fixture.id}
                 className="flex flex-col rounded-xl bg-gray-800 px-8 md:flex-row mb-4 w-full"
               >
-                <div className="flex flex-col justify-start p-6 w-full">
-                  <div className="flex flex-col justify-center items-center">
-                    <p className="text-xs font-bold">
-                      {fixture.fixture.date.slice(11, 16)}
-                    </p>
-                  </div>
+                <div className="flex flex-col justify-start p-6 w-full items-center">
                   <div className="flex flex-row justify-center items-center">
+                    <div className="flex">
+                                          <p className="font-bold md:text-xl">
+                      {fixture.teams.home.name}
+                    </p>
                     <Image
                       src={fixture.teams.home.logo}
                       width={40}
                       height={40}
                       alt={fixture.teams.home.name}
-                      className="mr-2"
+                      className="mx-2"
                     />
-                    <p className="font-bold md:text-xl">
-                      {fixture.teams.home.name}
-                    </p>
-                    <p className="m-4 font-black">VS</p>
-                    <p className="font-bold md:text-xl">
-                      {fixture.teams.away.name}
-                    </p>
-                    <Image
+                    </div>
+                    <p className="m-4 text-lime-400 font-bold">{fixture.fixture.date.slice(11, 16)}</p>
+                    <div className="flex">
+                                          <Image
                       src={fixture.teams.away.logo}
                       width={40}
                       height={40}
                       alt={fixture.teams.away.name}
-                      className="ml-2"
-                    />
+                      className="mx-2"
+                    /><p className="font-bold md:text-xl">
+                      {fixture.teams.away.name}
+                    </p>
+                    </div>
+
                   </div>
                 </div>
               </div>
