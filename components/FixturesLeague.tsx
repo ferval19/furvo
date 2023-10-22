@@ -77,7 +77,6 @@ export default async function FixturesLeague({ leagueId }: any) {
               >
                 <div className="flex flex-col justify-start p-6 w-full">
                   <div className="flex flex-col justify-center items-center">
-
                     <p className="text-xs font-bold">
                       {fixture.fixture.date.slice(11, 16)}
                     </p>

@@ -10,15 +10,13 @@ import {
 } from "react";
 
 const fetchTopScores: any = async (params: any) => {
-  console.log("paramns ->" + params);
   const url = `https://api-football-v1.p.rapidapi.com/v3/players/topscorers?league=${params}&season=2023`;
   const options = {
     method: "GET",
     headers: {
       "X-RapidAPI-Key": "cfd5812b6amsh90b6b90fa19242dp1b3342jsn56fae60f75b5",
       "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
-    },
-    next: { revalidate: 43200 },
+    }
   };
   try {
     const response = await fetch(url, options);
