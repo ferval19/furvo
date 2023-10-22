@@ -31,8 +31,7 @@ const fetchFixture: any = async (params: any) => {
     headers: {
       "X-RapidAPI-Key": "cfd5812b6amsh90b6b90fa19242dp1b3342jsn56fae60f75b5",
       "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
-    },
-    next: { revalidate: 43200 },
+    }
   };
   try {
     const response = await fetch(url, options);
