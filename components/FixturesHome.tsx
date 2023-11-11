@@ -67,7 +67,7 @@ export default async function FixturesHome() {
   ];
 
   // Verifica si todos los juegos están vacíos
-  const allGamesEmpty = games.every(({ fixtures }) => fixtures.length === 0);
+  const allGamesEmpty = games.every(({ fixtures }) => fixtures && fixtures.length === 0);
 
   return (
     <div className="col-span-4 p-4 mt-4 bg-gray-900 rounded-xl w-full">
