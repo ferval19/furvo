@@ -1,0 +1,12 @@
+{
+  "/favicon.ico/route": "/favicon.ico",
+  "/page": "/",
+  "/leagues/page": "/leagues",
+  "/login/page": "/login",
+  "/leagues/[id]/page": "/leagues/[id]",
+  "/auth/callback/route": "/auth/callback",
+  "/auth/sign-out/route": "/auth/sign-out",
+  "/auth/sign-in/route": "/auth/sign-in",
+  "/auth/sign-up/route": "/auth/sign-up",
+  "/leagues/[id]/[teamId]/page": "/leagues/[id]/[teamId]"
+}

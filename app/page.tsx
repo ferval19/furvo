@@ -81,7 +81,6 @@ export default async function Index() {
         {/* <FixturesLive leagueId={39}/> */}
         <FixturesHome />
         </div>
-
         <ListlLeagues />
       </div>
     </div>

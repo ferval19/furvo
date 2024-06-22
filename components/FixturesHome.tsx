@@ -48,22 +48,33 @@ const fetchFixture: any = async (params: any) => {
 
 export default async function FixturesHome() {
   // Obtén los partidos para todas las ligas en paralelo
-  const [fixtures39, fixtures140, fixtures135, fixtures61, fixtures78] =
+  // const [fixtures39, fixtures140, fixtures135, fixtures61, fixtures78] =
+  //   await Promise.all([
+  //     fetchFixture(39),
+  //     fetchFixture(140),
+  //     fetchFixture(135),
+  //     fetchFixture(61),
+  //     fetchFixture(78),
+  //   ]);
+
+    const [fixtures39, fixtures140] =
     await Promise.all([
       fetchFixture(39),
       fetchFixture(140),
-      fetchFixture(135),
-      fetchFixture(61),
-      fetchFixture(78),
+    
     ]);
 
   // Organiza los datos en un array de objetos
+  // const games = [
+  //   { leagueName: "Inglaterra 🏴󠁧󠁢󠁥󠁮󠁧󠁿 - Premier League", fixtures: fixtures39 },
+  //   { leagueName: "España 🇪🇦 - La Liga", fixtures: fixtures140 },
+  //   { leagueName: "Italia 🇮🇹 - Serie A", fixtures: fixtures135 },
+  //   { leagueName: "Francia 🇫🇷 - Liegue 1", fixtures: fixtures61 },
+  //   { leagueName: "Alemania 🇩🇪 - Bundesliga", fixtures: fixtures78 },
+  // ];
   const games = [
     { leagueName: "Inglaterra 🏴󠁧󠁢󠁥󠁮󠁧󠁿 - Premier League", fixtures: fixtures39 },
     { leagueName: "España 🇪🇦 - La Liga", fixtures: fixtures140 },
-    { leagueName: "Italia 🇮🇹 - Serie A", fixtures: fixtures135 },
-    { leagueName: "Francia 🇫🇷 - Liegue 1", fixtures: fixtures61 },
-    { leagueName: "Alemania 🇩🇪 - Bundesliga", fixtures: fixtures78 },
   ];
 
   // Verifica si todos los juegos están vacíos
