@@ -89,28 +89,6 @@ module.exports = require("next/dist/compiled/next-server/app-page.runtime.dev.js
 
 /***/ }),
 
-/***/ "websocket?310a":
-/*!****************************!*\
-  !*** external "websocket" ***!
-  \****************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("websocket");
-
-/***/ }),
-
-/***/ "websocket?156a":
-/*!****************************!*\
-  !*** external "websocket" ***!
-  \****************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("websocket");
-
-/***/ }),
-
 /***/ "buffer":
 /*!*************************!*\
   !*** external "buffer" ***!
@@ -166,6 +144,17 @@ module.exports = require("https");
 
 /***/ }),
 
+/***/ "net":
+/*!**********************!*\
+  !*** external "net" ***!
+  \**********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("net");
+
+/***/ }),
+
 /***/ "path":
 /*!***********************!*\
   !*** external "path" ***!
@@ -196,6 +185,17 @@ module.exports = require("punycode");
 
 "use strict";
 module.exports = require("stream");
+
+/***/ }),
+
+/***/ "tls":
+/*!**********************!*\
+  !*** external "tls" ***!
+  \**********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("tls");
 
 /***/ }),
 
@@ -452,7 +452,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, ["vendor-chunks/@supabase","vendor-chunks/next","vendor-chunks/tr46","vendor-chunks/jose","vendor-chunks/node-fetch","vendor-chunks/whatwg-url","vendor-chunks/set-cookie-parser","vendor-chunks/webidl-conversions","vendor-chunks/@swc","vendor-chunks/cross-fetch"], () => (__webpack_exec__("(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fpage&page=%2Fpage&appPaths=%2Fpage&pagePath=private-next-app-dir%2Fpage.tsx&appDir=%2FUsers%2Fffvalero%2FDevelpoer%2Fproyectos%2Ffurvo%2Fapp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=%2FUsers%2Fffvalero%2FDevelpoer%2Fproyectos%2Ffurvo&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!")));
+var __webpack_exports__ = __webpack_require__.X(0, ["vendor-chunks/next","vendor-chunks/@supabase","vendor-chunks/tr46","vendor-chunks/jose","vendor-chunks/whatwg-url","vendor-chunks/set-cookie-parser","vendor-chunks/webidl-conversions","vendor-chunks/@swc"], () => (__webpack_exec__("(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fpage&page=%2Fpage&appPaths=%2Fpage&pagePath=private-next-app-dir%2Fpage.tsx&appDir=%2FUsers%2Fffvalero%2FDevelpoer%2Fproyectos%2Ffurvo%2Fapp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=%2FUsers%2Fffvalero%2FDevelpoer%2Fproyectos%2Ffurvo&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!")));
 module.exports = __webpack_exports__;
 
 })();
