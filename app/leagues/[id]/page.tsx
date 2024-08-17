@@ -14,7 +14,7 @@ interface LeagueInfos {
 }
 
 async function getData(params: any) {
-  const url = `https://api-football-v1.p.rapidapi.com/v3/standings?season=2023&league=${params}`;
+  const url = `https://api-football-v1.p.rapidapi.com/v3/standings?season=2024&league=${params}`;
   const options = {
     method: "GET",
     headers: {

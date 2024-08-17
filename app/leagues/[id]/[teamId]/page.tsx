@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode } from "react";
 
 const fetchTeam: any = async (params: any) => {
-  const url = `https://api-football-v1.p.rapidapi.com/v3/players?team=${params}&season=2023`;
+  const url = `https://api-football-v1.p.rapidapi.com/v3/players?team=${params}&season=2024`;
   const options = {
       method: 'GET',
       headers: {

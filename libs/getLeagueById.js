@@ -1,5 +1,5 @@
 export default async function getLeagueById(id) {
-    const url = `https://api-football-v1.p.rapidapi.com/v3/teams?league=${id}&season=2023`;
+    const url = `https://api-football-v1.p.rapidapi.com/v3/teams?league=${id}&season=2024`;
     const options = {
         method: 'GET',
         headers: {

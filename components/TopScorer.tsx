@@ -10,7 +10,7 @@ import {
 } from "react";
 
 const fetchTopScores: any = async (params: any) => {
-  const url = `https://api-football-v1.p.rapidapi.com/v3/players/topscorers?league=${params}&season=2023`;
+  const url = `https://api-football-v1.p.rapidapi.com/v3/players/topscorers?league=${params}&season=2024`;
   const options = {
     method: "GET",
     headers: {
