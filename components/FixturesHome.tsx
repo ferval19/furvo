@@ -28,7 +28,7 @@ const fetchFixture: any = async (params: any) => {
   const dia = String(fechaActual.getDate()).padStart(2, "0");
   const fechaEnFormatoAñoMesDia = `${año}-${mes}-${dia}`;
 
-  const url = `https://api-football-v1.p.rapidapi.com/v3/fixtures?date=${fechaEnFormatoAñoMesDia}&league=${params}&season=2023`;
+  const url = `https://api-football-v1.p.rapidapi.com/v3/fixtures?date=${fechaEnFormatoAñoMesDia}&league=${params}&season=2024`;
   const options = {
     method: "GET",
     headers: {
@@ -88,7 +88,7 @@ export default async function FixturesHome() {
       {games.map(({ leagueName, fixtures }) => (
         <div key={leagueName}>
           <h2 className="text-normal my-4">{leagueName}</h2>
-          {fixtures.map(
+          {fixtures && Array.isArray(fixtures) && fixtures.map(
             (
               fixture: {
                 fixture: any;
