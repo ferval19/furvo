@@ -1,13 +1,1 @@
-{
-  "/_not-found/page": "app/_not-found/page.js",
-  "/leagues/[id]/[teamId]/page": "app/leagues/[id]/[teamId]/page.js",
-  "/login/page": "app/login/page.js",
-  "/leagues/[id]/page": "app/leagues/[id]/page.js",
-  "/leagues/page": "app/leagues/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/auth/callback/route": "app/auth/callback/route.js",
-  "/auth/sign-out/route": "app/auth/sign-out/route.js",
-  "/auth/sign-up/route": "app/auth/sign-up/route.js",
-  "/auth/sign-in/route": "app/auth/sign-in/route.js",
-  "/page": "app/page.js"
-}
+{}
