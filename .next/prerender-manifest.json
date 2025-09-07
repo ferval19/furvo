@@ -1,1 +1,11 @@
-{"version":4,"routes":{"/favicon.ico":{"initialHeaders":{"cache-control":"public, max-age=0, must-revalidate","content-type":"image/x-icon","x-next-cache-tags":"_N_T_/layout,_N_T_/favicon.ico/layout,_N_T_/favicon.ico/route,_N_T_/favicon.ico"},"experimentalBypassFor":[{"type":"header","key":"Next-Action"},{"type":"header","key":"content-type","value":"multipart/form-data;.*"}],"initialRevalidateSeconds":false,"srcRoute":"/favicon.ico","dataRoute":null}},"dynamicRoutes":{},"notFoundRoutes":[],"preview":{"previewModeId":"a8e1ab2c335736b801e4aeadfbd4d5e8","previewModeSigningKey":"72adb2823ab4838239dffdef4dcd06cf597adcd5a867c1f3bcea2e881394395f","previewModeEncryptionKey":"5b4232dfd36a0b591db4d13a8fec3910fe781ff1f978cce8d05d72cf6df11926"}}
+{
+  "version": 4,
+  "routes": {},
+  "dynamicRoutes": {},
+  "notFoundRoutes": [],
+  "preview": {
+    "previewModeId": "77fb788a17ef2e662b20b73a7beeb1e5",
+    "previewModeSigningKey": "92cf30d3ee7f353fb9fbd24f3e6e7944bda8d1bda988f09617f638de7f63bd00",
+    "previewModeEncryptionKey": "05a011c00a6b05b569a5c17bc60b6023a5e63e595afd01f44b20493971da573b"
+  }
+}

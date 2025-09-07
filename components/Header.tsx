@@ -47,7 +47,6 @@ export default async function Header() {
         </Link>
         <ul className="hidden md:flex px-4 mx-auto font-semibold font-heading space-x-12">
           <li><Link className="hover:text-gray-200" href="/leagues">Ligas</Link></li>
-          <li><a className="hover:text-gray-200" href="#">Noticias</a></li>
         </ul>
         <div className="hidden xl:flex space-x-5 items-center">
           <a className="hover:text-gray-200" href="#"></a>
