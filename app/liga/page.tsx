@@ -8,12 +8,13 @@ export default async function LigaIndexPage() {
 
   const { data: memberships } = await supabase
     .from('league_members')
-    .select('league_id')
+    .select('league_id, leagues(invite_code)')
     .eq('user_id', user.id)
     .limit(1);
 
   if (memberships && memberships.length > 0) {
-    redirect(`/liga/${memberships[0].league_id}`);
+    const code = (memberships[0] as any).leagues?.invite_code;
+    redirect(`/liga/${code}`);
   }
   redirect('/onboarding');
 }
