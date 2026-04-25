@@ -49,7 +49,7 @@ export default async function RootPage() {
             }}>
               Entrar
             </Link>
-            <Link href="/onboarding" style={{
+            <Link href="/login?mode=signup&next=/onboarding" style={{
               fontFamily: 'var(--fv-sans)', fontSize: 13, fontWeight: 700,
               color: '#0a1a12', padding: '8px 18px',
               background: 'var(--fv-accent)', borderRadius: 999,
@@ -110,7 +110,7 @@ export default async function RootPage() {
             </p>
 
             <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-              <Link href="/onboarding" style={{
+              <Link href="/login?mode=signup&next=/onboarding" style={{
                 display: 'inline-block', padding: '14px 28px',
                 borderRadius: 999, background: 'var(--fv-accent)',
                 color: '#0a1a12', fontFamily: 'var(--fv-sans)',
@@ -378,7 +378,7 @@ export default async function RootPage() {
             }}>
               No le dejes que se lo eche en cara.
             </div>
-            <Link href="/onboarding" style={{
+            <Link href="/login?mode=signup&next=/onboarding" style={{
               display: 'inline-block', padding: '14px 28px',
               borderRadius: 999, background: 'var(--fv-accent)',
               color: '#0a1a12', fontFamily: 'var(--fv-sans)',
@@ -414,7 +414,7 @@ export default async function RootPage() {
             }}>
               Entrar
             </Link>
-            <Link href="/onboarding" style={{
+            <Link href="/login?mode=signup&next=/onboarding" style={{
               fontFamily: 'var(--fv-mono)', fontSize: 10,
               letterSpacing: '0.08em', color: 'var(--fv-muted)',
             }}>

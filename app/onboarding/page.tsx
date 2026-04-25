@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
 import { FurvoWordmark, EyebrowLabel } from '@/components/primitives';
@@ -11,6 +11,12 @@ export default function OnboardingPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const router = useRouter();
+
+  useEffect(() => {
+    createClient().auth.getUser().then(({ data: { user } }) => {
+      if (!user) router.replace('/login?mode=signup&next=/onboarding');
+    });
+  }, [router]);
 
   async function createLeague() {
     setLoading(true);

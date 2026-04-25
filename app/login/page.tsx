@@ -1,7 +1,7 @@
 'use client';
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { createClient } from '@/lib/supabase/client';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { FurvoWordmark } from '@/components/primitives';
 
 type Mode = 'signin' | 'signup';
@@ -23,8 +23,11 @@ const inputStyle: React.CSSProperties = {
   outline: 'none',
 };
 
-export default function LoginPage() {
-  const [mode, setMode]         = useState<Mode>('signin');
+function LoginForm() {
+  const searchParams = useSearchParams();
+  const next = searchParams.get('next') ?? '/';
+  const initialMode = searchParams.get('mode') === 'signup' ? 'signup' : 'signin';
+  const [mode, setMode]         = useState<Mode>(initialMode);
   const [email, setEmail]       = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading]   = useState(false);
@@ -42,7 +45,7 @@ export default function LoginPage() {
       const { error: err } = await supabase.auth.signInWithPassword({ email, password });
       setLoading(false);
       if (err) { setError(translateError(err.message)); return; }
-      router.push('/');
+      router.push(next);
       router.refresh();
     } else {
       const { error: err } = await supabase.auth.signUp({
@@ -205,5 +208,13 @@ export default function LoginPage() {
         Solo fútbol con tus amigos
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense>
+      <LoginForm />
+    </Suspense>
   );
 }
