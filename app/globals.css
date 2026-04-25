@@ -1,0 +1,204 @@
+:root {
+  --fv-sans: "Inter Tight", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --fv-serif: "Instrument Serif", Georgia, serif;
+  --fv-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+
+  /* Night stadium — deeper blacks à la FotMob */
+  --fv-bg:          oklch(0.09  0.010 150);
+  --fv-surface:     oklch(0.13  0.013 150);
+  --fv-surface-2:   oklch(0.18  0.016 150);
+  --fv-line:        oklch(0.26  0.018 150);
+  --fv-ink:         oklch(0.97  0.008 130);
+  --fv-muted:       oklch(0.58  0.016 140);
+  --fv-tertiary:    oklch(0.44  0.013 140);
+  --fv-secondary:   oklch(0.70  0.014 140);
+  --fv-accent:      oklch(0.76  0.19  148);
+  --fv-accent-soft: oklch(0.20  0.09  148);
+  --fv-flash:       oklch(0.88  0.20  105);
+  --fv-flash-soft:  oklch(0.26  0.10  105);
+  --fv-good:        oklch(0.76  0.19  148);
+  --fv-bad:         oklch(0.65  0.20   28);
+  --fv-bad-soft:    oklch(0.20  0.07   28);
+
+  /* Live / result states */
+  --fv-live:        oklch(0.65  0.22   28);
+  --fv-live-soft:   oklch(0.18  0.07   28);
+  --fv-win:         oklch(0.76  0.19  148);
+  --fv-win-soft:    oklch(0.18  0.08  148);
+  --fv-loss:        oklch(0.65  0.20   28);
+  --fv-loss-soft:   oklch(0.18  0.07   28);
+  --fv-draw:        oklch(0.72  0.08   80);
+  --fv-draw-soft:   oklch(0.20  0.04   80);
+
+  /* Safe area */
+  --fv-tab-h: 72px;
+  --fv-safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+* { box-sizing: border-box; }
+html {
+  scroll-behavior: smooth;
+}
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--fv-sans);
+  background: var(--fv-bg);
+  color: var(--fv-ink);
+  min-height: 100vh;
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button { font-family: inherit; cursor: pointer; }
+input, textarea, select { font-family: inherit; }
+a { color: inherit; text-decoration: none; }
+
+/* Scrollbar — hide on overflow containers */
+.fv-scroll-x {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.fv-scroll-x::-webkit-scrollbar { display: none; }
+
+/* Glass surface — iOS 26 liquid glass */
+.glass {
+  background: color-mix(in oklch, var(--fv-surface) 65%, transparent);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border: 1px solid var(--fv-line);
+  border-top-color: rgba(255,255,255,0.09); /* specular highlight */
+}
+
+/* Active tap feedback */
+.fv-tappable {
+  transition: transform 0.12s ease, opacity 0.12s ease;
+  cursor: pointer;
+}
+.fv-tappable:active { transform: scale(0.97); opacity: 0.85; }
+
+/* Card link hover */
+.fv-card-link {
+  transition: transform 0.18s ease, opacity 0.18s ease, border-color 0.18s ease;
+  cursor: pointer;
+}
+.fv-card-link:hover  { opacity: 0.88; }
+.fv-card-link:active { transform: scale(0.97); opacity: 0.80; }
+
+/* Sticky page header with glass — add to any page header div */
+.fv-page-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: color-mix(in oklch, var(--fv-bg) 90%, transparent);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border-bottom: 1px solid color-mix(in oklch, var(--fv-line) 55%, transparent);
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Tap target helper */
+.fv-tap {
+  min-height: 44px;
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Status badges */
+.fv-badge-finished {
+  background: var(--fv-surface-2);
+  border-left: 2px solid var(--fv-line);
+}
+.fv-badge-live {
+  background: color-mix(in oklch, var(--fv-flash-soft) 60%, transparent);
+  border-left: 2px solid var(--fv-flash);
+}
+
+@keyframes fv-pulse {
+  0%, 100% { opacity: 1; } 50% { opacity: 0.4; }
+}
+
+@keyframes fv-live-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.45; transform: scale(0.75); }
+}
+
+.fv-live-dot {
+  display: inline-block;
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--fv-live);
+  animation: fv-live-pulse 1.4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes fv-slide-in {
+  from { opacity: 0; transform: translateX(8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.fv-slide-in { animation: fv-slide-in 0.22s ease both; }
+
+@keyframes fv-pop {
+  0%   { transform: scale(0.92); opacity: 0.6; }
+  60%  { transform: scale(1.04); }
+  100% { transform: scale(1);    opacity: 1; }
+}
+
+@keyframes fv-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fv-fade-in {
+  animation: fv-fade-in 0.2s ease both;
+}
+
+/* ── Desktop layout ──────────────────────────────────── */
+:root {
+  --fv-sidebar-w: 220px;
+}
+
+/* Mobile defaults for grid classes */
+.fv-match-grid  { display: flex; flex-direction: column; gap: 8px; }
+.fv-groups-grid { display: flex; flex-direction: column; gap: 16px; }
+.fv-3col        { display: flex; flex-direction: column; gap: 6px; }
+
+@media (min-width: 768px) {
+  /* Tab bar disappears, sidebar takes over */
+  .fv-tabbar      { display: none !important; }
+  .fv-mobile-only { display: none !important; }
+
+  /* Inner pages: shift right of sidebar + remove tab-bar bottom space */
+  .fv-page {
+    padding-left: var(--fv-sidebar-w) !important;
+    padding-bottom: 56px !important;
+  }
+
+  /* Responsive grid utilities (use !important to override inline display styles) */
+  .fv-match-grid  { display: grid !important; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .fv-groups-grid { display: grid !important; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .fv-3col        { display: grid !important; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .fv-liga-grid   { display: grid !important; grid-template-columns: 3fr 2fr; gap: 28px; align-items: start; }
+
+  /* Floating progress bar: no longer above tab bar */
+  .fv-progress-float {
+    bottom: 20px !important;
+    left: calc(var(--fv-sidebar-w) + 16px) !important;
+    right: 16px !important;
+  }
+
+  /* Landing: max-width centred container */
+  .fv-landing-wrap { max-width: 1180px; margin: 0 auto; padding-left: 40px; padding-right: 40px; }
+  .fv-landing-hero { display: grid; grid-template-columns: 55fr 45fr; gap: 64px; align-items: center; }
+  .fv-landing-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .fv-landing-pts   { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+}
+
+@media (max-width: 767px) {
+  .fv-desktop-only { display: none !important; }
+  .fv-landing-hero  { display: flex; flex-direction: column; }
+  .fv-landing-steps { display: flex; flex-direction: column; }
+  .fv-landing-pts   { display: flex; flex-direction: column; }
+}
