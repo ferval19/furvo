@@ -3,6 +3,12 @@ import { TabBar } from '@/components/tab-bar';
 import { FurvoWordmark, EyebrowLabel } from '@/components/primitives';
 import { redirect, notFound } from 'next/navigation';
 import Link from 'next/link';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Grupos',
+  robots: { index: false, follow: false },
+};
 
 type Team = { code: string; name: string; flag: string | null; group_letter: string | null };
 type Match = { home_team: string; away_team: string; home_score: number | null; away_score: number | null; status: string };

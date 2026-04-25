@@ -1,0 +1,38 @@
+{
+  "name": "Furvo · Mundial '26",
+  "short_name": "Furvo",
+  "description": "La porra del Mundial 2026 con tus amigos",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b1710",
+  "theme_color": "#0b1710",
+  "orientation": "portrait-primary",
+  "lang": "es",
+  "categories": ["sports", "games", "social"],
+  "icons": [
+    {
+      "src": "/icon",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-icon",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Mi liga",
+      "short_name": "Liga",
+      "description": "Ver mi liga y clasificación",
+      "url": "/liga"
+    },
+    {
+      "name": "Jornada actual",
+      "short_name": "Jornada",
+      "description": "Poner predicciones de la jornada",
+      "url": "/jornada"
+    }
+  ]
+}

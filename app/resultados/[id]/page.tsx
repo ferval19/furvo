@@ -3,6 +3,12 @@ import { TabBar } from '@/components/tab-bar';
 import { FurvoWordmark, EyebrowLabel, MatchCard } from '@/components/primitives';
 import { redirect, notFound } from 'next/navigation';
 import Link from 'next/link';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Resultados',
+  robots: { index: false, follow: false },
+};
 
 type Match = {
   id: string; jornada_number: number; phase: string;

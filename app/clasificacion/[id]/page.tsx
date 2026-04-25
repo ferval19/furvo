@@ -2,6 +2,12 @@ import { createClient } from '@/lib/supabase/server';
 import { TabBar } from '@/components/tab-bar';
 import { EyebrowLabel, Avatar } from '@/components/primitives';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Clasificación',
+  robots: { index: false, follow: false },
+};
 
 const RANK: { color: string; label: string; bg: string }[] = [
   { color: 'oklch(0.82 0.16 88)',  label: '1', bg: 'oklch(0.22 0.07 88)'  },

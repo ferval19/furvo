@@ -5,6 +5,22 @@ import { CopyCode } from '@/components/copy-code';
 import { RulesCheck } from '@/components/rules-check';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
+
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  const supabase = createClient();
+  const { data: league } = await supabase
+    .from('leagues')
+    .select('name')
+    .eq('invite_code', params.id)
+    .single();
+  const name = league?.name ?? 'Liga privada';
+  return {
+    title: name,
+    description: `Clasificación y predicciones de ${name} · Porra del Mundial 2026`,
+    robots: { index: false, follow: false },
+  };
+}
 
 const RANK_COLOR = ['oklch(0.82 0.16 88)', 'oklch(0.78 0.05 240)', 'oklch(0.70 0.12 50)'];
 

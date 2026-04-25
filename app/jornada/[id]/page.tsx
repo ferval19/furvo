@@ -1,6 +1,12 @@
 import { createClient } from '@/lib/supabase/server';
 import { JornadaClient } from './jornada-client';
 import { notFound, redirect } from 'next/navigation';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Jornada',
+  robots: { index: false, follow: false },
+};
 
 export type JornadaMeta = {
   number: number;
