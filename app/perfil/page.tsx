@@ -41,11 +41,22 @@ export default function PerfilPage() {
     const supabase = createClient();
     supabase.auth.getUser().then(({ data: { user } }) => {
       if (!user) { router.push('/login'); return; }
+
+      // avatar_url from OAuth session (Google provides it here)
+      const oauthAvatar = (user.user_metadata?.avatar_url as string | null) ?? null;
+
       supabase
         .from('profiles').select('id, handle, name, avatar_color, avatar_url').eq('id', user.id).single()
         .then(({ data }) => {
-          if (data) setProfile(data);
+          if (!data) return;
+          const avatarUrl = data.avatar_url ?? oauthAvatar;
+          setProfile({ ...data, avatar_url: avatarUrl });
+          // Backfill DB silently so standings also pick it up next load
+          if (!data.avatar_url && oauthAvatar) {
+            supabase.from('profiles').update({ avatar_url: oauthAvatar }).eq('id', user.id);
+          }
         });
+
       supabase
         .from('league_members')
         .select('league_id, leagues(name, invite_code)')
