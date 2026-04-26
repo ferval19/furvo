@@ -14,7 +14,7 @@ export default function OnboardingPage() {
 
   useEffect(() => {
     createClient().auth.getUser().then(({ data: { user } }) => {
-      if (!user) router.replace('/login?mode=signup&next=/onboarding');
+      if (!user) router.push('/login?mode=signup&next=/onboarding');
     });
   }, [router]);
 

@@ -2,6 +2,7 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { FurvoWordmark } from '@/components/primitives';
 import { Suspense } from 'react';
+import Link from 'next/link';
 
 const POINTS = [
   {
@@ -83,7 +84,17 @@ function ReglasContent() {
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       }}>
         <FurvoWordmark size={20} />
-        {!isOnboarding && (
+        {isOnboarding ? (
+          <Link
+            href={next}
+            style={{
+              fontFamily: 'var(--fv-mono)', fontSize: 10, letterSpacing: '0.12em',
+              textTransform: 'uppercase', color: 'var(--fv-muted)', textDecoration: 'none',
+            }}
+          >
+            Saltar →
+          </Link>
+        ) : (
           <button
             onClick={() => router.back()}
             style={{
