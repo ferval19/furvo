@@ -59,9 +59,9 @@ export interface Database {
         ];
       };
       profiles: {
-        Row: { id: string; handle: string; name: string; avatar_color: string | null; created_at: string };
-        Insert: { id: string; handle: string; name: string; avatar_color?: string | null; created_at?: string };
-        Update: { handle?: string; name?: string; avatar_color?: string | null };
+        Row: { id: string; handle: string; name: string; avatar_color: string | null; avatar_url: string | null; created_at: string };
+        Insert: { id: string; handle: string; name: string; avatar_color?: string | null; avatar_url?: string | null; created_at?: string };
+        Update: { handle?: string; name?: string; avatar_color?: string | null; avatar_url?: string | null };
         Relationships: [
           { foreignKeyName: 'profiles_id_fkey'; columns: ['id']; isOneToOne: true; referencedRelation: 'users'; referencedColumns: ['id'] },
         ];

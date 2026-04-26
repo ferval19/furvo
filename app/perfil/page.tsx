@@ -6,7 +6,7 @@ import { FurvoWordmark, EyebrowLabel, Avatar } from '@/components/primitives';
 import { TabBar } from '@/components/tab-bar';
 import Link from 'next/link';
 
-type Profile = { id: string; handle: string; name: string; avatar_color: string | null };
+type Profile = { id: string; handle: string; name: string; avatar_color: string | null; avatar_url: string | null };
 type LeagueMembership = { league_id: string; leagues: { name: string; invite_code: string } };
 
 const COLORS = [
@@ -42,7 +42,7 @@ export default function PerfilPage() {
     supabase.auth.getUser().then(({ data: { user } }) => {
       if (!user) { router.push('/login'); return; }
       supabase
-        .from('profiles').select('*').eq('id', user.id).single()
+        .from('profiles').select('id, handle, name, avatar_color, avatar_url').eq('id', user.id).single()
         .then(({ data }) => {
           if (data) setProfile(data);
         });
@@ -109,7 +109,7 @@ export default function PerfilPage() {
 
       {/* Hero perfil */}
       <div style={{ padding: '28px 20px 0', display: 'flex', alignItems: 'center', gap: 18 }}>
-        <Avatar name={editing ? draft.name || profile.name : profile.name} color={editing ? draft.avatar_color : profile.avatar_color} size={64} />
+        <Avatar name={editing ? draft.name || profile.name : profile.name} color={editing ? draft.avatar_color : profile.avatar_color} avatarUrl={editing ? null : profile.avatar_url} size={64} />
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ fontFamily: 'var(--fv-serif)', fontSize: 28, letterSpacing: '-0.025em', lineHeight: 1 }}>
             {profile.name}

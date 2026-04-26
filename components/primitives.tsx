@@ -350,12 +350,30 @@ export function MatchCard({
 }
 
 export function Avatar({
-  name, color, size = 44,
+  name, color, size = 44, avatarUrl,
 }: {
   name: string;
   color?: string | null;
   size?: number;
+  avatarUrl?: string | null;
 }) {
+  if (avatarUrl) {
+    return (
+      <div style={{
+        width: size, height: size, borderRadius: '50%',
+        flexShrink: 0, overflow: 'hidden', background: 'var(--fv-surface-2)',
+      }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={avatarUrl}
+          alt={name}
+          referrerPolicy="no-referrer"
+          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+        />
+      </div>
+    );
+  }
+
   const palette: Record<string, { bg: string; fg: string }> = {
     red:    { bg: 'oklch(0.28 0.14 28)',  fg: 'oklch(0.78 0.18 28)' },
     green:  { bg: 'var(--fv-accent-soft)', fg: 'var(--fv-accent)' },

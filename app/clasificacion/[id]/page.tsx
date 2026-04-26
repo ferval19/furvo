@@ -25,7 +25,15 @@ export default async function ClasificacionPage({ params }: { params: { id: stri
 
   if (!league) notFound();
 
-  const { data: standings } = await supabase.rpc('get_standings', { league_uuid: league.id });
+  const [{ data: standings }, { data: members }] = await Promise.all([
+    supabase.rpc('get_standings', { league_uuid: league.id }),
+    supabase.from('league_members').select('user_id, profiles(avatar_url)').eq('league_id', league.id),
+  ]);
+
+  const avatarMap: Record<string, string | null> = {};
+  for (const m of members ?? []) {
+    avatarMap[(m as any).user_id] = (m as any).profiles?.avatar_url ?? null;
+  }
 
   const top3 = (standings ?? []).slice(0, 3);
   const rest = (standings ?? []).slice(3);
@@ -85,7 +93,7 @@ export default async function ClasificacionPage({ params }: { params: { id: stri
                 }}>
                   {rank.label}
                 </div>
-                <Avatar name={s.name} color={s.avatar_color} size={42} />
+                <Avatar name={s.name} color={s.avatar_color} avatarUrl={avatarMap[s.user_id]} size={42} />
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{
                     fontFamily: 'var(--fv-serif)', fontSize: 20, lineHeight: 1,
@@ -133,7 +141,7 @@ export default async function ClasificacionPage({ params }: { params: { id: stri
                 }}>
                   {i + 1}
                 </div>
-                <Avatar name={s.name} color={s.avatar_color} size={30} />
+                <Avatar name={s.name} color={s.avatar_color} avatarUrl={avatarMap[s.user_id]} size={30} />
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{
                     fontFamily: 'var(--fv-serif)', fontSize: 16,

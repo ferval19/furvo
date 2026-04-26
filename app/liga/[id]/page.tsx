@@ -78,7 +78,15 @@ export default async function LigaPage({ params }: { params: { id: string } }) {
   const predCount = myPreds?.length ?? 0;
   const remaining = totalInJornada - predCount;
 
-  const { data: standings } = await supabase.rpc('get_standings', { league_uuid: league.id });
+  const [{ data: standings }, { data: members }] = await Promise.all([
+    supabase.rpc('get_standings', { league_uuid: league.id }),
+    supabase.from('league_members').select('user_id, profiles(avatar_url)').eq('league_id', league.id),
+  ]);
+
+  const avatarMap: Record<string, string | null> = {};
+  for (const m of members ?? []) {
+    avatarMap[(m as any).user_id] = (m as any).profiles?.avatar_url ?? null;
+  }
 
   const { count: liveCount } = await supabase
     .from('matches')
@@ -263,7 +271,7 @@ export default async function LigaPage({ params }: { params: { id: string } }) {
                   }}>
                     {i + 1}
                   </div>
-                  <Avatar name={s.name} color={s.avatar_color} size={34} />
+                  <Avatar name={s.name} color={s.avatar_color} avatarUrl={avatarMap[s.user_id]} size={34} />
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{
                       fontFamily: 'var(--fv-serif)', fontSize: 17, lineHeight: 1,
